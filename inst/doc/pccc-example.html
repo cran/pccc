@@ -14,7 +14,7 @@
 <meta name="author" content="Seth Russell" />
 <meta name="author" content="Tell Bennett" />
 
-<meta name="date" content="2017-12-13" />
+<meta name="date" content="2018-03-10" />
 
 <title>PCCC: An Example Using the Center for Disease Control’s Multiple Cause of Death Dataset</title>
 
@@ -284,23 +284,23 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h4 class="author"><em>James Feinstein</em></h4>
 <h4 class="author"><em>Seth Russell</em></h4>
 <h4 class="author"><em>Tell Bennett</em></h4>
-<h4 class="date"><em>2017-12-13</em></h4>
+<h4 class="date"><em>2018-03-10</em></h4>
 
 
 
-<section id="introduction" class="level1">
+<div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>This vignette provides an example using publicly available death certificate data to illustrate how the <code>pccc</code> package generates the Complex Chronic Condition (CCC) categories from ICD-9-CM and ICD-10-CM codes. For an overview of the CCC classification system, see <a href="pccc-overview.html">pccc-overview</a>.</p>
 <p>To evaluate the code chunks in this example you will need to load the following R packages.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(pccc)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a></code></pre></div>
-</section>
-<section id="accessing-the-data" class="level1">
+</div>
+<div id="accessing-the-data" class="section level1">
 <h1>Accessing the Data</h1>
 <p>The Center for Disease Control maintains vital statistics including death certificate data. The publicly available death certificate data, known as the Multiple Cause of Death (MCD) file, contain ICD diagnostic codes specifying the diseases and conditions leading to each decedent’s death. In particular, the 1996 MCD data contain both ICD-9-CM and ICD-10 codes, making it an ideal example to demonstrate how the PCCC software categorizes ICD codes. Please note that because of the way ICD-9-CM codes are mapped to ICD-10-CM codes (<a href="https://www.cms.gov/Medicare/Coding/ICD10/2018-ICD-10-CM-and-GEMs.html" class="uri">https://www.cms.gov/Medicare/Coding/ICD10/2018-ICD-10-CM-and-GEMs.html</a>), the calculated frequencies of CCCs may differ between corresponding ICD-9-CM and ICD-10-CM diagnosis codes for a decedent.</p>
 <p>The data documentation and instructions for direct download are available at: <a href="ftp://ftp.cdc.gov/pub/health_statistics/nchs/datasets/comparability/icd9_icd10/ICD9_ICD10_comparability_file_documentation.pdf" class="uri">ftp://ftp.cdc.gov/pub/health_statistics/nchs/datasets/comparability/icd9_icd10/ICD9_ICD10_comparability_file_documentation.pdf</a></p>
-</section>
-<section id="preparing-the-data" class="level1">
+</div>
+<div id="preparing-the-data" class="section level1">
 <h1>Preparing the Data</h1>
 <p>For this illustrative example, we have provided just 2 columns of the data for decedents &lt;=21 years old: the ICD-9-CM underlying cause of death diagnosis code and the ICD-10-CM underlying cause of death diagnosis code. If you wish to recreate the data yourself from the direct download site, you will need to utilize column positions 142-145 (ICD-9-CM) and 444-447 (ICD-10) and restrict the data to records with age &lt;=21 years (column positions 64 - 66).</p>
 <p>Here’s a sample of how the file could be read and processed:</p>
@@ -335,8 +335,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb2-29" data-line-number="29">            , ]</a>
 <a class="sourceLine" id="cb2-30" data-line-number="30">mcod &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(mcod, <span class="dt">id =</span> <span class="kw">seq_along</span>(age))</a>
 <a class="sourceLine" id="cb2-31" data-line-number="31">mcod &lt;-<span class="st"> </span>mcod[<span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;icd9&quot;</span>, <span class="st">&quot;icd10&quot;</span>)]</a></code></pre></div>
-</section>
-<section id="running-the-pccc-software" class="level1">
+</div>
+<div id="running-the-pccc-software" class="section level1">
 <h1>Running the PCCC Software</h1>
 <p>Within the example data, there are 2 string variables for ICD-9-CM and ICD-10 codes. If you inspect the first 10 rows of the codes, you will notice they conform to the formatting guidelines outlined in the PCCC overview file <a href="pccc-overview.html">pccc-overview</a>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Show data</span></a>
@@ -436,14 +436,14 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb5-39" data-line-number="39"><span class="co">#&gt; 1 0.004259114      0.03042883 0.04534342 0.0218491 9.225518e-05          0</span></a>
 <a class="sourceLine" id="cb5-40" data-line-number="40"><span class="co">#&gt;    ccc_flag</span></a>
 <a class="sourceLine" id="cb5-41" data-line-number="41"><span class="co">#&gt; 1 0.2285315</span></a></code></pre></div>
-</section>
-<section id="references" class="level1">
+</div>
+<div id="references" class="section level1">
 <h1>References</h1>
 <ul>
 <li>Feudtner C, et al. Pediatric complex chronic conditions classification system version 2: updated for ICD-10 and complex medical technology dependence and transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199</li>
 <li>Feudtner C, et al. Pediatric deaths attributable to complex chronic conditions: a population-based study of Washington State, 1980-1997. Pediatrics. 2000;106(1 Pt 2):205-209.</li>
 </ul>
-</section>
+</div>
 
 
 

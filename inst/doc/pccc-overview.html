@@ -15,7 +15,7 @@
 <meta name="author" content="James Feinstein" />
 <meta name="author" content="Tell Bennett" />
 
-<meta name="date" content="2017-12-13" />
+<meta name="date" content="2018-03-10" />
 
 <title>Pediatric Complex Chronic Conditions</title>
 
@@ -286,11 +286,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h4 class="author"><em>Seth Russell</em></h4>
 <h4 class="author"><em>James Feinstein</em></h4>
 <h4 class="author"><em>Tell Bennett</em></h4>
-<h4 class="date"><em>2017-12-13</em></h4>
+<h4 class="date"><em>2018-03-10</em></h4>
 
 
 
-<section id="introduction" class="level1">
+<div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>This vignette describes how the <code>pccc</code> package generates the Complex Chronic Condition Categories (CCC) from ICD-9 and ICD-10 codes.</p>
 <p>A CCC is “any medical condition that can be reasonably expected to last at least 12 months (unless death intervenes) and to involve either several different organ systems or 1 organ system severely enough to require specialty pediatric care and probably some period of hospitalization in a tertiary care center.” The categorization is based on the work of Feudtner et al. (2000 &amp; 2014), as referenced below.</p>
@@ -299,8 +299,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>To evaluate the code chunks in this example you will need to load the following R packages.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(pccc)</a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a></code></pre></div>
-</section>
-<section id="logic-employed" class="level1">
+</div>
+<div id="logic-employed" class="section level1">
 <h1>Logic employed</h1>
 <p>There are 12 total categories of CCCs used in this package. The first group of 10 are mutually exclusive - only one of them can be derived from a single ICD code:</p>
 <ul>
@@ -321,17 +321,17 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <li>Transplant</li>
 </ul>
 <p>To see actual specific ICD codes by category, see <a href="pccc-icd-codes.html">pccc-icd-codes</a>.</p>
-</section>
-<section id="generating-ccc-categories-from-icd-codes" class="level1">
+</div>
+<div id="generating-ccc-categories-from-icd-codes" class="section level1">
 <h1>Generating CCC categories from ICD codes</h1>
 <p>The <code>ccc</code> function is the workhorse here. Simply put, a user will provide ICD codes as strings and <code>ccc</code> will return CCC categories. CCC codes for ICD-9-CM are matched on substrings and ICD 10 codes are matched on full codes, but the <code>ccc</code> function uses the same “starts with substring” matching logic for both, except in a few cases described in the next paragraph.</p>
-<section id="substring-matching-exceptions" class="level2">
+<div id="substring-matching-exceptions" class="section level2">
 <h2>Substring matching exceptions</h2>
 <p>Some datasets may contain different degrees of specificity of ICD-9-CM codes, which can lead to issues with substring matching for certain codes. For example, consider a patient with <em>Congenital hereditary muscular dystrophy</em>. The least specific ICD-9-CM code for <em>Muscular dystropy</em> is 359, which is a CCC code. The exact ICD-9-CM code specifying <em>Congenital hereditary muscular dystrophy</em> is 3590. Even when describing the same patient, one dataset may contain the 359 code while another dataset may contain the 3590 code. If we use substring matching logic above and match on 359, we would capture the patient in both datasets. However, we would also capture non-CCC diagnoses like 3594, <em>Toxic myopathy</em>. If we use substring matching logic and match on 3590, we would only capture the patient in the dataset with more specific ICD-9-CM codes. We address this problem by exact matching for less specific codes (e.g., the code 359 will match only if the dataset contains the 3-digit code 359) and substring matching for more specific codes (e.g., code 3590 will match any code <em>beginning with</em> 3590). This approach improves the sensitivity of detecting CCCs in datasets with less specific codes (e.g. 359) and also reduces misclassification errors in datasets with more specific codes (e.g. 3590).</p>
 <p><strong>We have listed these exact match exceptions under their corresponding CCC category in the <a href="pccc-icd-codes.html">pccc-icd-codes</a> description.</strong></p>
-</section>
-</section>
-<section id="preparing-icd-9-cm-and-icd-10-cm-codes-for-analysis-using-the-pccc-package" class="level1">
+</div>
+</div>
+<div id="preparing-icd-9-cm-and-icd-10-cm-codes-for-analysis-using-the-pccc-package" class="section level1">
 <h1>Preparing ICD-9-CM and ICD-10-CM codes for analysis using the PCCC package</h1>
 <p><strong>Users of the <code>pccc</code> package will need to pre-process the ICD-9 and ICD-10 codes in their data so that the strings are formatted in the way that the <code>pccc</code> package will recognize them.</strong></p>
 <p>Specific rules to format ICD Codes correctly:</p>
@@ -351,11 +351,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <li>If there are changes in either ICD-9-CM or ICD-10-CM, this library may require updating to continue functioning correctly.</li>
 </ul>
 <p>Users of PCCC may find the R Package <a href="https://jackwasey.github.io/icd/">ICD</a> useful.</p>
-</section>
-<section id="pccc-examples" class="level1">
+</div>
+<div id="pccc-examples" class="section level1">
 <h1>PCCC Examples</h1>
 <p>To illustrate the how the input formatting impacts the identification of a CCC, consider the data <code>data.frame</code> named <code>dat</code> below. These data have information about three patients (A-C). Each subject has the same ICD-9-CM diagnosis code (e.g. <em>Hypertrophic obstructive cardiomyopathy</em>, ICD-9-CM 425.11, which should be sent as 4251) and the same ICD-9-CM procedure code (e.g. <em>Heart transplantation</em>, ICD-9-CM 37.51, which should be sent as 3751), but each input is formatted differently. Based on the ICD-9-CM diagnosis code, the <code>ccc</code> function will only identify subject <code>A</code> as having a CCC. Based on the ICD-9-CM procedure code, the <code>ccc</code> function will only identify subject <code>B</code> as having a CCC and will also flag the Transplantation category.</p>
-<section id="basic-example" class="level2">
+<div id="basic-example" class="section level2">
 <h2>Basic Example</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ids =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), </a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">                  <span class="dt">dxs =</span> <span class="kw">c</span>(<span class="st">&quot;4251&quot;</span>, <span class="st">&quot;425.1&quot;</span>, <span class="st">&quot;425.1&quot;</span>), </a>
@@ -378,8 +378,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; 1               0          0        0        0          0        1</span></a>
 <a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; 2               0          0        0        0          1        1</span></a>
 <a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt; 3               0          0        0        0          0        0</span></a></code></pre></div>
-</section>
-<section id="extended-example" class="level2">
+</div>
+<div id="extended-example" class="section level2">
 <h2>Extended Example</h2>
 <p>This example used a tool developed by Seth Russell (available at <a href="https://github.com/magic-lantern/icd_file_generator">icd_file_generator</a>) to create a sample data file for ICD-9-CM and ICD-10-CM. The generated data files contain randomly generated ICD codes for 1,000 patients and is comprised of 10 columns of diagnosis codes (d_cols), 10 columns of procedure codes (p_cols), and 10 columns of other data (g_cols).</p>
 <p>Sample of how ICD-9-CM test file was generated:</p>
@@ -433,15 +433,15 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb5-38" data-line-number="38"><span class="co">#&gt; 1     0.102 0.15       0.064 0.118 0.103       0.061      0.08</span></a>
 <a class="sourceLine" id="cb5-39" data-line-number="39"><span class="co">#&gt;   congeni_genetic malignancy neonatal tech_dep transplant ccc_flag</span></a>
 <a class="sourceLine" id="cb5-40" data-line-number="40"><span class="co">#&gt; 1           0.025        0.4     0.02    0.287      0.061    0.741</span></a></code></pre></div>
-</section>
-</section>
-<section id="references" class="level1">
+</div>
+</div>
+<div id="references" class="section level1">
 <h1>References</h1>
 <ul>
 <li>Feudtner C, et al. Pediatric complex chronic conditions classification system version 2: updated for ICD-10 and complex medical technology dependence and transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199.</li>
 <li>Feudtner C, et al. Pediatric deaths attributable to complex chronic conditions: a population-based study of Washington State, 1980-1997. Pediatrics. 2000;106(1 Pt 2):205-209.</li>
 </ul>
-</section>
+</div>
 
 
 
