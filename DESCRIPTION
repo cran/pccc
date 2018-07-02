@@ -1,6 +1,6 @@
 Package: pccc
 Title: Pediatric Complex Chronic Conditions
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: c(
     person("Peter", "DeWitt", , "dewittpe@gmail.com", role = c("aut")),
     person("Tell",  "Bennett", , "tell.bennett@ucdenver.edu", role = c("aut")),
@@ -21,11 +21,11 @@ VignetteBuilder: knitr
 URL: https://github.com/CUD2V/pccc
 BugReports: https://github.com/CUD2V/pccc/issues
 NeedsCompilation: yes
-Packaged: 2018-03-10 18:15:34 UTC; seth
+Packaged: 2018-07-02 19:25:36 UTC; seth
 Author: Peter DeWitt [aut],
   Tell Bennett [aut],
   James Feinstein [aut],
   Seth Russell [aut, cre]
 Maintainer: Seth Russell <seth.russell@ucdenver.edu>
 Repository: CRAN
-Date/Publication: 2018-03-10 18:40:40 UTC
+Date/Publication: 2018-07-02 19:40:03 UTC
