@@ -1,42 +1,53 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="James Feinstein" />
 <meta name="author" content="Peter DeWitt" />
 <meta name="author" content="Seth Russell" />
 <meta name="author" content="Tell Bennett" />
 
-<meta name="date" content="2019-08-21" />
+<meta name="date" content="2020-05-15" />
 
 <title>pccc-icd-codes</title>
 
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -56,7 +67,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -123,9 +134,6 @@ padding-right: 2em;
 font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 14px;
 line-height: 1.35;
-}
-#header {
-text-align: center;
 }
 #TOC {
 clear: both;
@@ -294,7 +302,8 @@ code > span.st { color: #d14; }
 code > span.co { color: #888888; font-style: italic; } 
 code > span.ot { color: #007020; } 
 code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
 
@@ -312,7 +321,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h4 class="author">Peter DeWitt</h4>
 <h4 class="author">Seth Russell</h4>
 <h4 class="author">Tell Bennett</h4>
-<h4 class="date">2019-08-21</h4>
+<h4 class="date">2020-05-15</h4>
 
 
 
@@ -365,43 +374,46 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p><code>get_codes</code> returns a matrix of character vectors. The categories of CCC are the rows and the diagnostic (<code>dx</code>) or procedure (<code>pc</code>) codes are the columns. If you need to view the ICD-9-CM codes for <code>cvd</code>, for example, subset as usual for matrices.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">get_codes</span>(<span class="dv">9</span>)[<span class="st">&quot;cvd&quot;</span>, ]</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt;  [1] &quot;4161&quot;  &quot;4168&quot;  &quot;4169&quot;  &quot;4240&quot;  &quot;4258&quot;  &quot;4242&quot;  &quot;4243&quot;  &quot;4250&quot; </span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt;  [9] &quot;4251&quot;  &quot;4252&quot;  &quot;4253&quot;  &quot;4254&quot;  &quot;426&quot;   &quot;4270&quot;  &quot;4271&quot;  &quot;4272&quot; </span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; [17] &quot;4273&quot;  &quot;4274&quot;  &quot;4276&quot;  &quot;4277&quot;  &quot;4278&quot;  &quot;4279&quot;  &quot;4280&quot;  &quot;42883&quot;</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; [25] &quot;4291&quot;  &quot;4293&quot;  &quot;43311&quot; &quot;7450&quot;  &quot;7451&quot;  &quot;7452&quot;  &quot;7453&quot;  &quot;7456&quot; </span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; [33] &quot;746&quot;   &quot;7471&quot;  &quot;7472&quot;  &quot;7473&quot;  &quot;7474&quot;  &quot;74781&quot; &quot;74789&quot; &quot;9960&quot; </span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; [41] &quot;9961&quot;  &quot;99661&quot; &quot;99662&quot; &quot;V421&quot;  &quot;V422&quot;  &quot;V432&quot;  &quot;V433&quot;  &quot;V450&quot; </span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; [49] &quot;V4581&quot; &quot;V533&quot; </span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; </span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; [1] &quot;416&quot;</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; </span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt;  [1] &quot;0050&quot; &quot;0051&quot; &quot;0053&quot; &quot;0054&quot; &quot;0055&quot; &quot;0057&quot; &quot;1751&quot; &quot;1752&quot; &quot;3581&quot; &quot;3582&quot;</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; [11] &quot;3583&quot; &quot;3584&quot; &quot;3741&quot; &quot;3751&quot; &quot;3752&quot; &quot;3753&quot; &quot;3754&quot; &quot;3755&quot; &quot;3760&quot; &quot;3761&quot;</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; [21] &quot;3763&quot; &quot;3765&quot; &quot;3766&quot; &quot;3767&quot; &quot;3768&quot; &quot;3771&quot; &quot;3772&quot; &quot;3774&quot; &quot;3776&quot; &quot;3779&quot;</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; [31] &quot;3780&quot; &quot;3781&quot; &quot;3782&quot; &quot;3783&quot; &quot;3785&quot; &quot;3786&quot; &quot;3787&quot; &quot;3789&quot; &quot;3794&quot; &quot;3795&quot;</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; [41] &quot;3796&quot; &quot;3797&quot; &quot;3798&quot; &quot;3981&quot; &quot;3982&quot; &quot;3983&quot; &quot;3984&quot; &quot;3985&quot; &quot;8945&quot; &quot;8946&quot;</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; [51] &quot;8947&quot; &quot;8948&quot; &quot;8949&quot;</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; </span></span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt;  [1] &quot;4161&quot;  &quot;4168&quot;  &quot;4169&quot;  &quot;4240&quot;  &quot;4258&quot;  &quot;4242&quot;  &quot;4243&quot;  &quot;4250&quot;  &quot;4251&quot; </span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; [10] &quot;4252&quot;  &quot;4253&quot;  &quot;4254&quot;  &quot;426&quot;   &quot;4270&quot;  &quot;4271&quot;  &quot;4272&quot;  &quot;4273&quot;  &quot;4274&quot; </span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; [19] &quot;4276&quot;  &quot;4277&quot;  &quot;4278&quot;  &quot;4279&quot;  &quot;4280&quot;  &quot;42883&quot; &quot;4291&quot;  &quot;4293&quot;  &quot;43311&quot;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; [28] &quot;7450&quot;  &quot;7451&quot;  &quot;7452&quot;  &quot;7453&quot;  &quot;7456&quot;  &quot;746&quot;   &quot;7471&quot;  &quot;7472&quot;  &quot;7473&quot; </span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; [37] &quot;7474&quot;  &quot;74781&quot; &quot;74789&quot; &quot;9960&quot;  &quot;9961&quot;  &quot;99661&quot; &quot;99662&quot; &quot;V421&quot;  &quot;V422&quot; </span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; [46] &quot;V432&quot;  &quot;V433&quot;  &quot;V450&quot;  &quot;V4581&quot; &quot;V533&quot; </span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; </span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt; [1] &quot;416&quot;</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt; </span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt;  [1] &quot;0050&quot; &quot;0051&quot; &quot;0053&quot; &quot;0054&quot; &quot;0055&quot; &quot;0057&quot; &quot;1751&quot; &quot;1752&quot; &quot;3581&quot; &quot;3582&quot;</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; [11] &quot;3583&quot; &quot;3584&quot; &quot;3741&quot; &quot;3751&quot; &quot;3752&quot; &quot;3753&quot; &quot;3754&quot; &quot;3755&quot; &quot;3760&quot; &quot;3761&quot;</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; [21] &quot;3763&quot; &quot;3765&quot; &quot;3766&quot; &quot;3767&quot; &quot;3768&quot; &quot;3771&quot; &quot;3772&quot; &quot;3774&quot; &quot;3776&quot; &quot;3779&quot;</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; [31] &quot;3780&quot; &quot;3781&quot; &quot;3782&quot; &quot;3783&quot; &quot;3785&quot; &quot;3786&quot; &quot;3787&quot; &quot;3789&quot; &quot;3794&quot; &quot;3795&quot;</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; [41] &quot;3796&quot; &quot;3797&quot; &quot;3798&quot; &quot;3981&quot; &quot;3982&quot; &quot;3983&quot; &quot;3984&quot; &quot;3985&quot; &quot;8945&quot; &quot;8946&quot;</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; [51] &quot;8947&quot; &quot;8948&quot; &quot;8949&quot;</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; </span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 <p>If a user prefers to explore the ICD codes in a <code>data.frame</code>, then use the base R <code>as.data.frame</code> method to convert the output from <code>get_codes</code> to a <code>data.frame</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">as.data.frame</span>(<span class="kw">get_codes</span>(<span class="dv">9</span>))</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; # A tibble: 736 x 3</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt;    category  type  icd  </span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt;  1 neuromusc dx    3180 </span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt;  2 neuromusc dx    3181 </span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt;  3 neuromusc dx    3182 </span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt;  4 neuromusc dx    330  </span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt;  5 neuromusc dx    331  </span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt;  6 neuromusc dx    3320 </span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#&gt;  7 neuromusc dx    3321 </span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt;  8 neuromusc dx    3330 </span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#&gt;  9 neuromusc dx    3332 </span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt; 10 neuromusc dx    3334 </span></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="co">#&gt; # … with 726 more rows</span></span></code></pre></div>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; Warning: `data_frame()` is deprecated as of tibble 1.1.0.</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">#&gt; Please use `tibble()` instead.</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; This warning is displayed once every 8 hours.</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt; Call `lifecycle::last_warnings()` to see where this warning was generated.</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; # A tibble: 736 x 3</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt;    category  type  icd  </span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt;  1 neuromusc dx    3180 </span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt;  2 neuromusc dx    3181 </span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">#&gt;  3 neuromusc dx    3182 </span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt;  4 neuromusc dx    330  </span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#&gt;  5 neuromusc dx    331  </span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt;  6 neuromusc dx    3320 </span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="co">#&gt;  7 neuromusc dx    3321 </span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="co">#&gt;  8 neuromusc dx    3330 </span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co">#&gt;  9 neuromusc dx    3332 </span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="co">#&gt; 10 neuromusc dx    3334 </span></span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="co">#&gt; # … with 726 more rows</span></span></code></pre></div>
 </div>
 <div id="neurologic-and-neuromuscular" class="section level1">
 <h1>Neurologic and Neuromuscular</h1>
@@ -409,23 +421,22 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-9-CM</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">get_codes</span>(<span class="dv">9</span>)[<span class="st">&quot;neuromusc&quot;</span>, ]</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt;  [1] &quot;3180&quot;  &quot;3181&quot;  &quot;3182&quot;  &quot;330&quot;   &quot;331&quot;   &quot;3320&quot;  &quot;3321&quot;  &quot;3330&quot; </span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt;  [9] &quot;3332&quot;  &quot;3334&quot;  &quot;3335&quot;  &quot;3337&quot;  &quot;3339&quot;  &quot;334&quot;   &quot;335&quot;   &quot;343&quot;  </span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; [17] &quot;34501&quot; &quot;34581&quot; &quot;3590&quot;  &quot;3591&quot;  &quot;35921&quot; &quot;35922&quot; &quot;35923&quot; &quot;35929&quot;</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; [25] &quot;3593&quot;  &quot;3361&quot;  &quot;3368&quot;  &quot;3379&quot;  &quot;3418&quot;  &quot;34290&quot; &quot;3440&quot;  &quot;34481&quot;</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt; [33] &quot;3449&quot;  &quot;34511&quot; &quot;3453&quot;  &quot;34541&quot; &quot;34561&quot; &quot;34571&quot; &quot;34591&quot; &quot;3481&quot; </span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; [41] &quot;3484&quot;  &quot;3491&quot;  &quot;43401&quot; &quot;43491&quot; &quot;740&quot;   &quot;741&quot;   &quot;742&quot;   &quot;7595&quot; </span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; [49] &quot;78003&quot; &quot;9962&quot;  &quot;99663&quot; &quot;V452&quot;  &quot;V5301&quot; &quot;V5302&quot;</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; </span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt; [1] &quot;359&quot;  &quot;3592&quot;</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; </span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt;  [1] &quot;0152&quot; &quot;0153&quot; &quot;0221&quot; &quot;0222&quot; &quot;0231&quot; &quot;0232&quot; &quot;0233&quot; &quot;0234&quot; &quot;0235&quot; &quot;0239&quot;</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; [11] &quot;0241&quot; &quot;0242&quot; &quot;0293&quot; &quot;0371&quot; &quot;0372&quot; &quot;0379&quot; &quot;0393&quot; &quot;0397&quot; &quot;0492&quot;</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; </span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co">#&gt;  [1] &quot;3180&quot;  &quot;3181&quot;  &quot;3182&quot;  &quot;330&quot;   &quot;331&quot;   &quot;3320&quot;  &quot;3321&quot;  &quot;3330&quot;  &quot;3332&quot; </span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt; [10] &quot;3334&quot;  &quot;3335&quot;  &quot;3337&quot;  &quot;3339&quot;  &quot;334&quot;   &quot;335&quot;   &quot;343&quot;   &quot;34501&quot; &quot;34581&quot;</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; [19] &quot;3590&quot;  &quot;3591&quot;  &quot;35921&quot; &quot;35922&quot; &quot;35923&quot; &quot;35929&quot; &quot;3593&quot;  &quot;3361&quot;  &quot;3368&quot; </span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; [28] &quot;3379&quot;  &quot;3418&quot;  &quot;34290&quot; &quot;3440&quot;  &quot;34481&quot; &quot;3449&quot;  &quot;34511&quot; &quot;3453&quot;  &quot;34541&quot;</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt; [37] &quot;34561&quot; &quot;34571&quot; &quot;34591&quot; &quot;3481&quot;  &quot;3484&quot;  &quot;3491&quot;  &quot;43401&quot; &quot;43491&quot; &quot;740&quot;  </span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; [46] &quot;741&quot;   &quot;742&quot;   &quot;7595&quot;  &quot;78003&quot; &quot;9962&quot;  &quot;99663&quot; &quot;V452&quot;  &quot;V5301&quot; &quot;V5302&quot;</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">#&gt; </span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt; [1] &quot;359&quot;  &quot;3592&quot;</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt; </span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt;  [1] &quot;0152&quot; &quot;0153&quot; &quot;0221&quot; &quot;0222&quot; &quot;0231&quot; &quot;0232&quot; &quot;0233&quot; &quot;0234&quot; &quot;0235&quot; &quot;0239&quot;</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; [11] &quot;0241&quot; &quot;0242&quot; &quot;0293&quot; &quot;0371&quot; &quot;0372&quot; &quot;0379&quot; &quot;0393&quot; &quot;0397&quot; &quot;0492&quot;</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; </span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 </div>
 <div id="icd-10-cm" class="section level2">
 <h2>ICD-10-CM</h2>
@@ -480,27 +491,26 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-9-CM</h2>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">get_codes</span>(<span class="dv">9</span>)[<span class="st">&quot;cvd&quot;</span>, ]</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt;  [1] &quot;4161&quot;  &quot;4168&quot;  &quot;4169&quot;  &quot;4240&quot;  &quot;4258&quot;  &quot;4242&quot;  &quot;4243&quot;  &quot;4250&quot; </span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt;  [9] &quot;4251&quot;  &quot;4252&quot;  &quot;4253&quot;  &quot;4254&quot;  &quot;426&quot;   &quot;4270&quot;  &quot;4271&quot;  &quot;4272&quot; </span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; [17] &quot;4273&quot;  &quot;4274&quot;  &quot;4276&quot;  &quot;4277&quot;  &quot;4278&quot;  &quot;4279&quot;  &quot;4280&quot;  &quot;42883&quot;</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; [25] &quot;4291&quot;  &quot;4293&quot;  &quot;43311&quot; &quot;7450&quot;  &quot;7451&quot;  &quot;7452&quot;  &quot;7453&quot;  &quot;7456&quot; </span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; [33] &quot;746&quot;   &quot;7471&quot;  &quot;7472&quot;  &quot;7473&quot;  &quot;7474&quot;  &quot;74781&quot; &quot;74789&quot; &quot;9960&quot; </span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; [41] &quot;9961&quot;  &quot;99661&quot; &quot;99662&quot; &quot;V421&quot;  &quot;V422&quot;  &quot;V432&quot;  &quot;V433&quot;  &quot;V450&quot; </span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt; [49] &quot;V4581&quot; &quot;V533&quot; </span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; </span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt; [1] &quot;416&quot;</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt; </span></span>
-<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt;  [1] &quot;0050&quot; &quot;0051&quot; &quot;0053&quot; &quot;0054&quot; &quot;0055&quot; &quot;0057&quot; &quot;1751&quot; &quot;1752&quot; &quot;3581&quot; &quot;3582&quot;</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt; [11] &quot;3583&quot; &quot;3584&quot; &quot;3741&quot; &quot;3751&quot; &quot;3752&quot; &quot;3753&quot; &quot;3754&quot; &quot;3755&quot; &quot;3760&quot; &quot;3761&quot;</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&gt; [21] &quot;3763&quot; &quot;3765&quot; &quot;3766&quot; &quot;3767&quot; &quot;3768&quot; &quot;3771&quot; &quot;3772&quot; &quot;3774&quot; &quot;3776&quot; &quot;3779&quot;</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="co">#&gt; [31] &quot;3780&quot; &quot;3781&quot; &quot;3782&quot; &quot;3783&quot; &quot;3785&quot; &quot;3786&quot; &quot;3787&quot; &quot;3789&quot; &quot;3794&quot; &quot;3795&quot;</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a><span class="co">#&gt; [41] &quot;3796&quot; &quot;3797&quot; &quot;3798&quot; &quot;3981&quot; &quot;3982&quot; &quot;3983&quot; &quot;3984&quot; &quot;3985&quot; &quot;8945&quot; &quot;8946&quot;</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a><span class="co">#&gt; [51] &quot;8947&quot; &quot;8948&quot; &quot;8949&quot;</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a><span class="co">#&gt; </span></span>
-<span id="cb7-22"><a href="#cb7-22"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb7-23"><a href="#cb7-23"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co">#&gt;  [1] &quot;4161&quot;  &quot;4168&quot;  &quot;4169&quot;  &quot;4240&quot;  &quot;4258&quot;  &quot;4242&quot;  &quot;4243&quot;  &quot;4250&quot;  &quot;4251&quot; </span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co">#&gt; [10] &quot;4252&quot;  &quot;4253&quot;  &quot;4254&quot;  &quot;426&quot;   &quot;4270&quot;  &quot;4271&quot;  &quot;4272&quot;  &quot;4273&quot;  &quot;4274&quot; </span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co">#&gt; [19] &quot;4276&quot;  &quot;4277&quot;  &quot;4278&quot;  &quot;4279&quot;  &quot;4280&quot;  &quot;42883&quot; &quot;4291&quot;  &quot;4293&quot;  &quot;43311&quot;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co">#&gt; [28] &quot;7450&quot;  &quot;7451&quot;  &quot;7452&quot;  &quot;7453&quot;  &quot;7456&quot;  &quot;746&quot;   &quot;7471&quot;  &quot;7472&quot;  &quot;7473&quot; </span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; [37] &quot;7474&quot;  &quot;74781&quot; &quot;74789&quot; &quot;9960&quot;  &quot;9961&quot;  &quot;99661&quot; &quot;99662&quot; &quot;V421&quot;  &quot;V422&quot; </span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; [46] &quot;V432&quot;  &quot;V433&quot;  &quot;V450&quot;  &quot;V4581&quot; &quot;V533&quot; </span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt; </span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt; [1] &quot;416&quot;</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt; </span></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">#&gt;  [1] &quot;0050&quot; &quot;0051&quot; &quot;0053&quot; &quot;0054&quot; &quot;0055&quot; &quot;0057&quot; &quot;1751&quot; &quot;1752&quot; &quot;3581&quot; &quot;3582&quot;</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="co">#&gt; [11] &quot;3583&quot; &quot;3584&quot; &quot;3741&quot; &quot;3751&quot; &quot;3752&quot; &quot;3753&quot; &quot;3754&quot; &quot;3755&quot; &quot;3760&quot; &quot;3761&quot;</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="co">#&gt; [21] &quot;3763&quot; &quot;3765&quot; &quot;3766&quot; &quot;3767&quot; &quot;3768&quot; &quot;3771&quot; &quot;3772&quot; &quot;3774&quot; &quot;3776&quot; &quot;3779&quot;</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="co">#&gt; [31] &quot;3780&quot; &quot;3781&quot; &quot;3782&quot; &quot;3783&quot; &quot;3785&quot; &quot;3786&quot; &quot;3787&quot; &quot;3789&quot; &quot;3794&quot; &quot;3795&quot;</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="co">#&gt; [41] &quot;3796&quot; &quot;3797&quot; &quot;3798&quot; &quot;3981&quot; &quot;3982&quot; &quot;3983&quot; &quot;3984&quot; &quot;3985&quot; &quot;8945&quot; &quot;8946&quot;</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a><span class="co">#&gt; [51] &quot;8947&quot; &quot;8948&quot; &quot;8949&quot;</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="co">#&gt; </span></span>
+<span id="cb7-21"><a href="#cb7-21"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 </div>
 <div id="icd-10-cm-1" class="section level2">
 <h2>ICD-10-CM</h2>
@@ -557,28 +567,27 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-9-CM</h2>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">get_codes</span>(<span class="dv">9</span>)[<span class="st">&quot;respiratory&quot;</span>, ]</span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;  [1] &quot;32725&quot; &quot;4160&quot;  &quot;4162&quot;  &quot;51630&quot; &quot;51631&quot; &quot;51637&quot; &quot;51884&quot; &quot;5190&quot; </span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt;  [9] &quot;2770&quot;  &quot;748&quot;   &quot;7704&quot;  &quot;V426&quot;  &quot;V440&quot;  &quot;V4576&quot; &quot;V460&quot;  &quot;V461&quot; </span></span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt; [17] &quot;V550&quot; </span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt; </span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt; [1] &quot;5163&quot;</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt; </span></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt;  [1] &quot;303&quot;  &quot;304&quot;  &quot;3121&quot; &quot;3129&quot; &quot;3141&quot; &quot;3174&quot; &quot;3241&quot; &quot;3249&quot; &quot;3250&quot; &quot;3259&quot;</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt; [11] &quot;3321&quot; &quot;3350&quot; &quot;3351&quot; &quot;3352&quot; &quot;336&quot;  &quot;3485&quot; &quot;9655&quot; &quot;9723&quot;</span></span>
-<span id="cb9-13"><a href="#cb9-13"></a><span class="co">#&gt; </span></span>
-<span id="cb9-14"><a href="#cb9-14"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb9-15"><a href="#cb9-15"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;  [1] &quot;32725&quot; &quot;4160&quot;  &quot;4162&quot;  &quot;51630&quot; &quot;51631&quot; &quot;51637&quot; &quot;51884&quot; &quot;5190&quot;  &quot;2770&quot; </span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt; [10] &quot;748&quot;   &quot;7704&quot;  &quot;V426&quot;  &quot;V440&quot;  &quot;V4576&quot; &quot;V460&quot;  &quot;V461&quot;  &quot;V550&quot; </span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt; </span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt; [1] &quot;5163&quot;</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt; </span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="co">#&gt;  [1] &quot;303&quot;  &quot;304&quot;  &quot;3121&quot; &quot;3129&quot; &quot;3141&quot; &quot;3174&quot; &quot;3241&quot; &quot;3249&quot; &quot;3250&quot; &quot;3259&quot;</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt; [11] &quot;3321&quot; &quot;3350&quot; &quot;3351&quot; &quot;3352&quot; &quot;336&quot;  &quot;3485&quot; &quot;9655&quot; &quot;9723&quot;</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt; </span></span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 </div>
 <div id="icd-10-cm-2" class="section level2">
 <h2>ICD-10-CM</h2>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">get_codes</span>(<span class="dv">10</span>)[<span class="st">&quot;respiratory&quot;</span>, ]</span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="co">#&gt;  [1] &quot;E84&quot;    &quot;G4735&quot;  &quot;I2782&quot;  &quot;Q30&quot;    &quot;Q31&quot;    &quot;Q32&quot;    &quot;Q33&quot;   </span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="co">#&gt;  [8] &quot;Q34&quot;    &quot;P280&quot;   &quot;Z902&quot;   &quot;J84112&quot; &quot;J9500&quot;  &quot;J9501&quot;  &quot;J9502&quot; </span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="co">#&gt; [15] &quot;J9503&quot;  &quot;J9504&quot;  &quot;J9509&quot;  &quot;J9620&quot;  &quot;Z430&quot;   &quot;Z930&quot;   &quot;Z942&quot;  </span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="co">#&gt; [22] &quot;Z990&quot;   &quot;J95850&quot; &quot;Z9911&quot;  &quot;Z9912&quot;  &quot;T86810&quot; &quot;T86811&quot; &quot;T86819&quot;</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="co">#&gt;  [1] &quot;E84&quot;    &quot;G4735&quot;  &quot;I2782&quot;  &quot;Q30&quot;    &quot;Q31&quot;    &quot;Q32&quot;    &quot;Q33&quot;    &quot;Q34&quot;   </span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co">#&gt;  [9] &quot;P280&quot;   &quot;Z902&quot;   &quot;J84112&quot; &quot;J9500&quot;  &quot;J9501&quot;  &quot;J9502&quot;  &quot;J9503&quot;  &quot;J9504&quot; </span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="co">#&gt; [17] &quot;J9509&quot;  &quot;J9620&quot;  &quot;Z430&quot;   &quot;Z930&quot;   &quot;Z942&quot;   &quot;Z990&quot;   &quot;J95850&quot; &quot;Z9911&quot; </span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co">#&gt; [25] &quot;Z9912&quot;  &quot;T86810&quot; &quot;T86811&quot; &quot;T86819&quot;</span></span>
 <span id="cb10-7"><a href="#cb10-7"></a><span class="co">#&gt; </span></span>
 <span id="cb10-8"><a href="#cb10-8"></a><span class="co">#&gt; $dx_fixed</span></span>
 <span id="cb10-9"><a href="#cb10-9"></a><span class="co">#&gt; character(0)</span></span>
@@ -605,22 +614,21 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-9-CM</h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">get_codes</span>(<span class="dv">9</span>)[<span class="st">&quot;renal&quot;</span>, ]</span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="co">#&gt;  [1] &quot;34461&quot; &quot;585&quot;   &quot;5964&quot;  &quot;59653&quot; &quot;59654&quot; &quot;753&quot;   &quot;99668&quot; &quot;V420&quot; </span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="co">#&gt;  [9] &quot;V445&quot;  &quot;V446&quot;  &quot;V451&quot;  &quot;V4573&quot; &quot;V4574&quot; &quot;V536&quot;  &quot;V555&quot;  &quot;V556&quot; </span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="co">#&gt; [17] &quot;V56&quot;  </span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="co">#&gt; </span></span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="co">#&gt; </span></span>
-<span id="cb11-10"><a href="#cb11-10"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb11-11"><a href="#cb11-11"></a><span class="co">#&gt;  [1] &quot;3895&quot; &quot;3927&quot; &quot;3942&quot; &quot;3993&quot; &quot;3994&quot; &quot;3995&quot; &quot;5498&quot; &quot;5502&quot; &quot;5503&quot; &quot;5504&quot;</span></span>
-<span id="cb11-12"><a href="#cb11-12"></a><span class="co">#&gt; [11] &quot;5512&quot; &quot;5551&quot; &quot;5552&quot; &quot;5553&quot; &quot;5554&quot; &quot;5561&quot; &quot;5569&quot; &quot;5593&quot; &quot;5594&quot; &quot;5597&quot;</span></span>
-<span id="cb11-13"><a href="#cb11-13"></a><span class="co">#&gt; [21] &quot;5641&quot; &quot;5642&quot; &quot;5651&quot; &quot;5652&quot; &quot;5661&quot; &quot;5662&quot; &quot;5671&quot; &quot;5672&quot; &quot;5673&quot; &quot;5674&quot;</span></span>
-<span id="cb11-14"><a href="#cb11-14"></a><span class="co">#&gt; [31] &quot;5675&quot; &quot;5679&quot; &quot;5721&quot; &quot;5722&quot; &quot;5771&quot; &quot;5779&quot; &quot;5993&quot; &quot;5994&quot; &quot;8607&quot; &quot;9645&quot;</span></span>
-<span id="cb11-15"><a href="#cb11-15"></a><span class="co">#&gt; [41] &quot;9646&quot; &quot;9647&quot;</span></span>
-<span id="cb11-16"><a href="#cb11-16"></a><span class="co">#&gt; </span></span>
-<span id="cb11-17"><a href="#cb11-17"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb11-18"><a href="#cb11-18"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="co">#&gt;  [1] &quot;34461&quot; &quot;585&quot;   &quot;5964&quot;  &quot;59653&quot; &quot;59654&quot; &quot;753&quot;   &quot;99668&quot; &quot;V420&quot;  &quot;V445&quot; </span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co">#&gt; [10] &quot;V446&quot;  &quot;V451&quot;  &quot;V4573&quot; &quot;V4574&quot; &quot;V536&quot;  &quot;V555&quot;  &quot;V556&quot;  &quot;V56&quot;  </span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="co">#&gt; </span></span>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="co">#&gt; character(0)</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="co">#&gt; </span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="co">#&gt;  [1] &quot;3895&quot; &quot;3927&quot; &quot;3942&quot; &quot;3993&quot; &quot;3994&quot; &quot;3995&quot; &quot;5498&quot; &quot;5502&quot; &quot;5503&quot; &quot;5504&quot;</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="co">#&gt; [11] &quot;5512&quot; &quot;5551&quot; &quot;5552&quot; &quot;5553&quot; &quot;5554&quot; &quot;5561&quot; &quot;5569&quot; &quot;5593&quot; &quot;5594&quot; &quot;5597&quot;</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a><span class="co">#&gt; [21] &quot;5641&quot; &quot;5642&quot; &quot;5651&quot; &quot;5652&quot; &quot;5661&quot; &quot;5662&quot; &quot;5671&quot; &quot;5672&quot; &quot;5673&quot; &quot;5674&quot;</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a><span class="co">#&gt; [31] &quot;5675&quot; &quot;5679&quot; &quot;5721&quot; &quot;5722&quot; &quot;5771&quot; &quot;5779&quot; &quot;5993&quot; &quot;5994&quot; &quot;8607&quot; &quot;9645&quot;</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a><span class="co">#&gt; [41] &quot;9646&quot; &quot;9647&quot;</span></span>
+<span id="cb11-15"><a href="#cb11-15"></a><span class="co">#&gt; </span></span>
+<span id="cb11-16"><a href="#cb11-16"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb11-17"><a href="#cb11-17"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 </div>
 <div id="icd-10-cm-3" class="section level2">
 <h2>ICD-10-CM</h2>
@@ -684,10 +692,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-9-CM</h2>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">get_codes</span>(<span class="dv">9</span>)[<span class="st">&quot;gi&quot;</span>, ]</span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="co">#&gt;  [1] &quot;4530&quot;  &quot;5364&quot;  &quot;555&quot;   &quot;556&quot;   &quot;5571&quot;  &quot;5602&quot;  &quot;5647&quot;  &quot;5714&quot; </span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="co">#&gt;  [9] &quot;5715&quot;  &quot;5716&quot;  &quot;5717&quot;  &quot;5718&quot;  &quot;5719&quot;  &quot;7503&quot;  &quot;751&quot;   &quot;V427&quot; </span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="co">#&gt; [17] &quot;V4283&quot; &quot;V4284&quot; &quot;V441&quot;  &quot;V442&quot;  &quot;V443&quot;  &quot;V444&quot;  &quot;V5350&quot; &quot;V5351&quot;</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="co">#&gt; [25] &quot;V5359&quot; &quot;V551&quot;  &quot;V552&quot;  &quot;V553&quot;  &quot;V554&quot; </span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="co">#&gt;  [1] &quot;4530&quot;  &quot;5364&quot;  &quot;555&quot;   &quot;556&quot;   &quot;5571&quot;  &quot;5602&quot;  &quot;5647&quot;  &quot;5714&quot;  &quot;5715&quot; </span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co">#&gt; [10] &quot;5716&quot;  &quot;5717&quot;  &quot;5718&quot;  &quot;5719&quot;  &quot;7503&quot;  &quot;751&quot;   &quot;V427&quot;  &quot;V4283&quot; &quot;V4284&quot;</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="co">#&gt; [19] &quot;V441&quot;  &quot;V442&quot;  &quot;V443&quot;  &quot;V444&quot;  &quot;V5350&quot; &quot;V5351&quot; &quot;V5359&quot; &quot;V551&quot;  &quot;V552&quot; </span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="co">#&gt; [28] &quot;V553&quot;  &quot;V554&quot; </span></span>
 <span id="cb13-7"><a href="#cb13-7"></a><span class="co">#&gt; </span></span>
 <span id="cb13-8"><a href="#cb13-8"></a><span class="co">#&gt; $dx_fixed</span></span>
 <span id="cb13-9"><a href="#cb13-9"></a><span class="co">#&gt; character(0)</span></span>
@@ -706,42 +714,41 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-10-CM</h2>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">get_codes</span>(<span class="dv">10</span>)[<span class="st">&quot;gi&quot;</span>, ]</span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt;  [1] &quot;K50&quot;    &quot;K51&quot;    &quot;K73&quot;    &quot;K74&quot;    &quot;K754&quot;   &quot;K760&quot;   &quot;K761&quot;  </span></span>
-<span id="cb14-4"><a href="#cb14-4"></a><span class="co">#&gt;  [8] &quot;K762&quot;   &quot;K763&quot;   &quot;K768&quot;   &quot;Q390&quot;   &quot;Q391&quot;   &quot;Q392&quot;   &quot;Q393&quot;  </span></span>
-<span id="cb14-5"><a href="#cb14-5"></a><span class="co">#&gt; [15] &quot;Q394&quot;   &quot;Q41&quot;    &quot;Q42&quot;    &quot;Q43&quot;    &quot;Q44&quot;    &quot;Q45&quot;    &quot;I820&quot;  </span></span>
-<span id="cb14-6"><a href="#cb14-6"></a><span class="co">#&gt; [22] &quot;K551&quot;   &quot;K562&quot;   &quot;K593&quot;   &quot;Z980&quot;   &quot;Z903&quot;   &quot;Z9049&quot;  &quot;K9420&quot; </span></span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&gt; [29] &quot;K9422&quot;  &quot;K9423&quot;  &quot;K9429&quot;  &quot;Z944&quot;   &quot;Z9482&quot;  &quot;Z9483&quot;  &quot;Z931&quot;  </span></span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="co">#&gt; [36] &quot;Z932&quot;   &quot;Z933&quot;   &quot;Z934&quot;   &quot;Z431&quot;   &quot;Z432&quot;   &quot;Z433&quot;   &quot;Z434&quot;  </span></span>
-<span id="cb14-9"><a href="#cb14-9"></a><span class="co">#&gt; [43] &quot;Z4651&quot;  &quot;Z4659&quot;  &quot;T8640&quot;  &quot;T8641&quot;  &quot;T8642&quot;  &quot;T86890&quot; &quot;T86891&quot;</span></span>
-<span id="cb14-10"><a href="#cb14-10"></a><span class="co">#&gt; [50] &quot;T86899&quot; &quot;T86850&quot; &quot;T86851&quot; &quot;T86859&quot;</span></span>
-<span id="cb14-11"><a href="#cb14-11"></a><span class="co">#&gt; </span></span>
-<span id="cb14-12"><a href="#cb14-12"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb14-13"><a href="#cb14-13"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb14-14"><a href="#cb14-14"></a><span class="co">#&gt; </span></span>
-<span id="cb14-15"><a href="#cb14-15"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb14-16"><a href="#cb14-16"></a><span class="co">#&gt;   [1] &quot;0CT70ZZ&quot; &quot;0CT7XZZ&quot; &quot;0D11074&quot; &quot;0D110J4&quot; &quot;0D110K4&quot; &quot;0D110Z4&quot; &quot;0D113J4&quot;</span></span>
-<span id="cb14-17"><a href="#cb14-17"></a><span class="co">#&gt;   [8] &quot;0D11474&quot; &quot;0D114J4&quot; &quot;0D114K4&quot; &quot;0D114Z4&quot; &quot;0D13079&quot; &quot;0D1307A&quot; &quot;0D1307B&quot;</span></span>
-<span id="cb14-18"><a href="#cb14-18"></a><span class="co">#&gt;  [15] &quot;0D15074&quot; &quot;0D150J4&quot; &quot;0D150K4&quot; &quot;0D150Z4&quot; &quot;0D153J4&quot; &quot;0D15474&quot; &quot;0D154J4&quot;</span></span>
-<span id="cb14-19"><a href="#cb14-19"></a><span class="co">#&gt;  [22] &quot;0D154K4&quot; &quot;0D154Z4&quot; &quot;0D16074&quot; &quot;0D1607A&quot; &quot;0D160J4&quot; &quot;0D160J9&quot; &quot;0D160JA&quot;</span></span>
-<span id="cb14-20"><a href="#cb14-20"></a><span class="co">#&gt;  [29] &quot;0D160K4&quot; &quot;0D160K9&quot; &quot;0D160KA&quot; &quot;0D160Z4&quot; &quot;0D160ZA&quot; &quot;0D163J4&quot; &quot;0D16474&quot;</span></span>
-<span id="cb14-21"><a href="#cb14-21"></a><span class="co">#&gt;  [36] &quot;0D164J4&quot; &quot;0D164J9&quot; &quot;0D164JA&quot; &quot;0D164K4&quot; &quot;0D164K9&quot; &quot;0D164KA&quot; &quot;0D164Z4&quot;</span></span>
-<span id="cb14-22"><a href="#cb14-22"></a><span class="co">#&gt;  [43] &quot;0D16874&quot; &quot;0D168J4&quot; &quot;0D168J9&quot; &quot;0D168JA&quot; &quot;0D168K4&quot; &quot;0D168K9&quot; &quot;0D168KA&quot;</span></span>
-<span id="cb14-23"><a href="#cb14-23"></a><span class="co">#&gt;  [50] &quot;0D168Z4&quot; &quot;0D1B0Z4&quot; &quot;0D1B4Z4&quot; &quot;0D1B8Z4&quot; &quot;0D1H0Z4&quot; &quot;0D1H4Z4&quot; &quot;0D1H8Z4&quot;</span></span>
-<span id="cb14-24"><a href="#cb14-24"></a><span class="co">#&gt;  [57] &quot;0D1K0Z4&quot; &quot;0D1K4Z4&quot; &quot;0D1K8Z4&quot; &quot;0D1L0Z4&quot; &quot;0D1L4Z4&quot; &quot;0D1L8Z4&quot; &quot;0D1N0Z4&quot;</span></span>
-<span id="cb14-25"><a href="#cb14-25"></a><span class="co">#&gt;  [64] &quot;0D1N4Z4&quot; &quot;0D1N8Z4&quot; &quot;0D20X0Z&quot; &quot;0D20XUZ&quot; &quot;0D20XYZ&quot; &quot;0D787ZZ&quot; &quot;0D7E7ZZ&quot;</span></span>
-<span id="cb14-26"><a href="#cb14-26"></a><span class="co">#&gt;  [71] &quot;0DBB7ZZ&quot; &quot;0DH50DZ&quot; &quot;0DH50UZ&quot; &quot;0DH53DZ&quot; &quot;0DH53UZ&quot; &quot;0DH54DZ&quot; &quot;0DH54UZ&quot;</span></span>
-<span id="cb14-27"><a href="#cb14-27"></a><span class="co">#&gt;  [78] &quot;0DH57DZ&quot; &quot;0DH57UZ&quot; &quot;0DH58DZ&quot; &quot;0DH58UZ&quot; &quot;0DH63UZ&quot; &quot;0DH64UZ&quot; &quot;0DHA3UZ&quot;</span></span>
-<span id="cb14-28"><a href="#cb14-28"></a><span class="co">#&gt;  [85] &quot;0DHA4UZ&quot; &quot;0DHA8UZ&quot; &quot;0DN87ZZ&quot; &quot;0DNE7ZZ&quot; &quot;0DT50ZZ&quot; &quot;0DT54ZZ&quot; &quot;0DT57ZZ&quot;</span></span>
-<span id="cb14-29"><a href="#cb14-29"></a><span class="co">#&gt;  [92] &quot;0DT58ZZ&quot; &quot;0DT60ZZ&quot; &quot;0DT64ZZ&quot; &quot;0DT67ZZ&quot; &quot;0DT68ZZ&quot; &quot;0DT80ZZ&quot; &quot;0DT84ZZ&quot;</span></span>
-<span id="cb14-30"><a href="#cb14-30"></a><span class="co">#&gt;  [99] &quot;0DT87ZZ&quot; &quot;0DT88ZZ&quot; &quot;0DT90ZZ&quot; &quot;0DT94ZZ&quot; &quot;0DT97ZZ&quot; &quot;0DT98ZZ&quot; &quot;0DTE0ZZ&quot;</span></span>
-<span id="cb14-31"><a href="#cb14-31"></a><span class="co">#&gt; [106] &quot;0DTE4ZZ&quot; &quot;0DTE7ZZ&quot; &quot;0DTE8ZZ&quot; &quot;0DW04UZ&quot; &quot;0DW08UZ&quot; &quot;0DY80Z0&quot; &quot;0DY80Z1&quot;</span></span>
-<span id="cb14-32"><a href="#cb14-32"></a><span class="co">#&gt; [113] &quot;0DY80Z2&quot; &quot;0DYE0Z0&quot; &quot;0DYE0Z1&quot; &quot;0DYE0Z2&quot; &quot;0FT00ZZ&quot; &quot;0FT04ZZ&quot; &quot;0FTG0ZZ&quot;</span></span>
-<span id="cb14-33"><a href="#cb14-33"></a><span class="co">#&gt; [120] &quot;0FTG4ZZ&quot; &quot;0FY00Z0&quot; &quot;0FY00Z1&quot; &quot;0FY00Z2&quot; &quot;0FYG0Z0&quot; &quot;0FYG0Z1&quot; &quot;0FYG0Z2&quot;</span></span>
-<span id="cb14-34"><a href="#cb14-34"></a><span class="co">#&gt; [127] &quot;0WQFXZ2&quot; &quot;3E030U0&quot; &quot;3E030U1&quot; &quot;3E033U0&quot; &quot;3E033U1&quot; &quot;3E0J3U0&quot; &quot;3E0J3U1&quot;</span></span>
-<span id="cb14-35"><a href="#cb14-35"></a><span class="co">#&gt; [134] &quot;3E0J7U0&quot; &quot;3E0J7U1&quot; &quot;3E0J8U0&quot; &quot;3E0J8U1&quot; &quot;3E1G78Z&quot; &quot;3E1H78Z&quot;</span></span>
-<span id="cb14-36"><a href="#cb14-36"></a><span class="co">#&gt; </span></span>
-<span id="cb14-37"><a href="#cb14-37"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb14-38"><a href="#cb14-38"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt;  [1] &quot;K50&quot;    &quot;K51&quot;    &quot;K73&quot;    &quot;K74&quot;    &quot;K754&quot;   &quot;K760&quot;   &quot;K761&quot;   &quot;K762&quot;  </span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="co">#&gt;  [9] &quot;K763&quot;   &quot;K768&quot;   &quot;Q390&quot;   &quot;Q391&quot;   &quot;Q392&quot;   &quot;Q393&quot;   &quot;Q394&quot;   &quot;Q41&quot;   </span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="co">#&gt; [17] &quot;Q42&quot;    &quot;Q43&quot;    &quot;Q44&quot;    &quot;Q45&quot;    &quot;I820&quot;   &quot;K551&quot;   &quot;K562&quot;   &quot;K593&quot;  </span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="co">#&gt; [25] &quot;Z980&quot;   &quot;Z903&quot;   &quot;Z9049&quot;  &quot;K9420&quot;  &quot;K9422&quot;  &quot;K9423&quot;  &quot;K9429&quot;  &quot;Z944&quot;  </span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&gt; [33] &quot;Z9482&quot;  &quot;Z9483&quot;  &quot;Z931&quot;   &quot;Z932&quot;   &quot;Z933&quot;   &quot;Z934&quot;   &quot;Z431&quot;   &quot;Z432&quot;  </span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co">#&gt; [41] &quot;Z433&quot;   &quot;Z434&quot;   &quot;Z4651&quot;  &quot;Z4659&quot;  &quot;T8640&quot;  &quot;T8641&quot;  &quot;T8642&quot;  &quot;T86890&quot;</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="co">#&gt; [49] &quot;T86891&quot; &quot;T86899&quot; &quot;T86850&quot; &quot;T86851&quot; &quot;T86859&quot;</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="co">#&gt; </span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="co">#&gt; character(0)</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="co">#&gt; </span></span>
+<span id="cb14-14"><a href="#cb14-14"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a><span class="co">#&gt;   [1] &quot;0CT70ZZ&quot; &quot;0CT7XZZ&quot; &quot;0D11074&quot; &quot;0D110J4&quot; &quot;0D110K4&quot; &quot;0D110Z4&quot; &quot;0D113J4&quot;</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a><span class="co">#&gt;   [8] &quot;0D11474&quot; &quot;0D114J4&quot; &quot;0D114K4&quot; &quot;0D114Z4&quot; &quot;0D13079&quot; &quot;0D1307A&quot; &quot;0D1307B&quot;</span></span>
+<span id="cb14-17"><a href="#cb14-17"></a><span class="co">#&gt;  [15] &quot;0D15074&quot; &quot;0D150J4&quot; &quot;0D150K4&quot; &quot;0D150Z4&quot; &quot;0D153J4&quot; &quot;0D15474&quot; &quot;0D154J4&quot;</span></span>
+<span id="cb14-18"><a href="#cb14-18"></a><span class="co">#&gt;  [22] &quot;0D154K4&quot; &quot;0D154Z4&quot; &quot;0D16074&quot; &quot;0D1607A&quot; &quot;0D160J4&quot; &quot;0D160J9&quot; &quot;0D160JA&quot;</span></span>
+<span id="cb14-19"><a href="#cb14-19"></a><span class="co">#&gt;  [29] &quot;0D160K4&quot; &quot;0D160K9&quot; &quot;0D160KA&quot; &quot;0D160Z4&quot; &quot;0D160ZA&quot; &quot;0D163J4&quot; &quot;0D16474&quot;</span></span>
+<span id="cb14-20"><a href="#cb14-20"></a><span class="co">#&gt;  [36] &quot;0D164J4&quot; &quot;0D164J9&quot; &quot;0D164JA&quot; &quot;0D164K4&quot; &quot;0D164K9&quot; &quot;0D164KA&quot; &quot;0D164Z4&quot;</span></span>
+<span id="cb14-21"><a href="#cb14-21"></a><span class="co">#&gt;  [43] &quot;0D16874&quot; &quot;0D168J4&quot; &quot;0D168J9&quot; &quot;0D168JA&quot; &quot;0D168K4&quot; &quot;0D168K9&quot; &quot;0D168KA&quot;</span></span>
+<span id="cb14-22"><a href="#cb14-22"></a><span class="co">#&gt;  [50] &quot;0D168Z4&quot; &quot;0D1B0Z4&quot; &quot;0D1B4Z4&quot; &quot;0D1B8Z4&quot; &quot;0D1H0Z4&quot; &quot;0D1H4Z4&quot; &quot;0D1H8Z4&quot;</span></span>
+<span id="cb14-23"><a href="#cb14-23"></a><span class="co">#&gt;  [57] &quot;0D1K0Z4&quot; &quot;0D1K4Z4&quot; &quot;0D1K8Z4&quot; &quot;0D1L0Z4&quot; &quot;0D1L4Z4&quot; &quot;0D1L8Z4&quot; &quot;0D1N0Z4&quot;</span></span>
+<span id="cb14-24"><a href="#cb14-24"></a><span class="co">#&gt;  [64] &quot;0D1N4Z4&quot; &quot;0D1N8Z4&quot; &quot;0D20X0Z&quot; &quot;0D20XUZ&quot; &quot;0D20XYZ&quot; &quot;0D787ZZ&quot; &quot;0D7E7ZZ&quot;</span></span>
+<span id="cb14-25"><a href="#cb14-25"></a><span class="co">#&gt;  [71] &quot;0DBB7ZZ&quot; &quot;0DH50DZ&quot; &quot;0DH50UZ&quot; &quot;0DH53DZ&quot; &quot;0DH53UZ&quot; &quot;0DH54DZ&quot; &quot;0DH54UZ&quot;</span></span>
+<span id="cb14-26"><a href="#cb14-26"></a><span class="co">#&gt;  [78] &quot;0DH57DZ&quot; &quot;0DH57UZ&quot; &quot;0DH58DZ&quot; &quot;0DH58UZ&quot; &quot;0DH63UZ&quot; &quot;0DH64UZ&quot; &quot;0DHA3UZ&quot;</span></span>
+<span id="cb14-27"><a href="#cb14-27"></a><span class="co">#&gt;  [85] &quot;0DHA4UZ&quot; &quot;0DHA8UZ&quot; &quot;0DN87ZZ&quot; &quot;0DNE7ZZ&quot; &quot;0DT50ZZ&quot; &quot;0DT54ZZ&quot; &quot;0DT57ZZ&quot;</span></span>
+<span id="cb14-28"><a href="#cb14-28"></a><span class="co">#&gt;  [92] &quot;0DT58ZZ&quot; &quot;0DT60ZZ&quot; &quot;0DT64ZZ&quot; &quot;0DT67ZZ&quot; &quot;0DT68ZZ&quot; &quot;0DT80ZZ&quot; &quot;0DT84ZZ&quot;</span></span>
+<span id="cb14-29"><a href="#cb14-29"></a><span class="co">#&gt;  [99] &quot;0DT87ZZ&quot; &quot;0DT88ZZ&quot; &quot;0DT90ZZ&quot; &quot;0DT94ZZ&quot; &quot;0DT97ZZ&quot; &quot;0DT98ZZ&quot; &quot;0DTE0ZZ&quot;</span></span>
+<span id="cb14-30"><a href="#cb14-30"></a><span class="co">#&gt; [106] &quot;0DTE4ZZ&quot; &quot;0DTE7ZZ&quot; &quot;0DTE8ZZ&quot; &quot;0DW04UZ&quot; &quot;0DW08UZ&quot; &quot;0DY80Z0&quot; &quot;0DY80Z1&quot;</span></span>
+<span id="cb14-31"><a href="#cb14-31"></a><span class="co">#&gt; [113] &quot;0DY80Z2&quot; &quot;0DYE0Z0&quot; &quot;0DYE0Z1&quot; &quot;0DYE0Z2&quot; &quot;0FT00ZZ&quot; &quot;0FT04ZZ&quot; &quot;0FTG0ZZ&quot;</span></span>
+<span id="cb14-32"><a href="#cb14-32"></a><span class="co">#&gt; [120] &quot;0FTG4ZZ&quot; &quot;0FY00Z0&quot; &quot;0FY00Z1&quot; &quot;0FY00Z2&quot; &quot;0FYG0Z0&quot; &quot;0FYG0Z1&quot; &quot;0FYG0Z2&quot;</span></span>
+<span id="cb14-33"><a href="#cb14-33"></a><span class="co">#&gt; [127] &quot;0WQFXZ2&quot; &quot;3E030U0&quot; &quot;3E030U1&quot; &quot;3E033U0&quot; &quot;3E033U1&quot; &quot;3E0J3U0&quot; &quot;3E0J3U1&quot;</span></span>
+<span id="cb14-34"><a href="#cb14-34"></a><span class="co">#&gt; [134] &quot;3E0J7U0&quot; &quot;3E0J7U1&quot; &quot;3E0J8U0&quot; &quot;3E0J8U1&quot; &quot;3E1G78Z&quot; &quot;3E1H78Z&quot;</span></span>
+<span id="cb14-35"><a href="#cb14-35"></a><span class="co">#&gt; </span></span>
+<span id="cb14-36"><a href="#cb14-36"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb14-37"><a href="#cb14-37"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 </div>
 </div>
 <div id="hematologic-or-immunologic" class="section level1">
@@ -750,49 +757,47 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-9-CM</h2>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">get_codes</span>(<span class="dv">9</span>)[<span class="st">&quot;hemato_immu&quot;</span>, ]</span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="co">#&gt;  [1] &quot;042&quot;   &quot;043&quot;   &quot;044&quot;   &quot;135&quot;   &quot;279&quot;   &quot;2820&quot;  &quot;2821&quot;  &quot;2822&quot; </span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="co">#&gt;  [9] &quot;2823&quot;  &quot;2824&quot;  &quot;2825&quot;  &quot;2826&quot;  &quot;2881&quot;  &quot;2882&quot;  &quot;284&quot;   &quot;2860&quot; </span></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="co">#&gt; [17] &quot;2863&quot;  &quot;28732&quot; &quot;28733&quot; &quot;28739&quot; &quot;28801&quot; &quot;28802&quot; &quot;2884&quot;  &quot;4460&quot; </span></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="co">#&gt; [25] &quot;4461&quot;  &quot;44621&quot; &quot;4464&quot;  &quot;4465&quot;  &quot;4466&quot;  &quot;4467&quot;  &quot;7100&quot;  &quot;7101&quot; </span></span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="co">#&gt; [33] &quot;7103&quot;  &quot;V08&quot;  </span></span>
-<span id="cb15-8"><a href="#cb15-8"></a><span class="co">#&gt; </span></span>
-<span id="cb15-9"><a href="#cb15-9"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a><span class="co">#&gt; </span></span>
-<span id="cb15-12"><a href="#cb15-12"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb15-13"><a href="#cb15-13"></a><span class="co">#&gt;  [1] &quot;4100&quot; &quot;4101&quot; &quot;4102&quot; &quot;4103&quot; &quot;4104&quot; &quot;4105&quot; &quot;4106&quot; &quot;4107&quot; &quot;4108&quot; &quot;4109&quot;</span></span>
-<span id="cb15-14"><a href="#cb15-14"></a><span class="co">#&gt; [11] &quot;415&quot;  &quot;4194&quot;</span></span>
-<span id="cb15-15"><a href="#cb15-15"></a><span class="co">#&gt; </span></span>
-<span id="cb15-16"><a href="#cb15-16"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb15-17"><a href="#cb15-17"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="co">#&gt;  [1] &quot;042&quot;   &quot;043&quot;   &quot;044&quot;   &quot;135&quot;   &quot;279&quot;   &quot;2820&quot;  &quot;2821&quot;  &quot;2822&quot;  &quot;2823&quot; </span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co">#&gt; [10] &quot;2824&quot;  &quot;2825&quot;  &quot;2826&quot;  &quot;2881&quot;  &quot;2882&quot;  &quot;284&quot;   &quot;2860&quot;  &quot;2863&quot;  &quot;28732&quot;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="co">#&gt; [19] &quot;28733&quot; &quot;28739&quot; &quot;28801&quot; &quot;28802&quot; &quot;2884&quot;  &quot;4460&quot;  &quot;4461&quot;  &quot;44621&quot; &quot;4464&quot; </span></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="co">#&gt; [28] &quot;4465&quot;  &quot;4466&quot;  &quot;4467&quot;  &quot;7100&quot;  &quot;7101&quot;  &quot;7103&quot;  &quot;V08&quot;  </span></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="co">#&gt; </span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="co">#&gt; character(0)</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="co">#&gt; </span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a><span class="co">#&gt;  [1] &quot;4100&quot; &quot;4101&quot; &quot;4102&quot; &quot;4103&quot; &quot;4104&quot; &quot;4105&quot; &quot;4106&quot; &quot;4107&quot; &quot;4108&quot; &quot;4109&quot;</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a><span class="co">#&gt; [11] &quot;415&quot;  &quot;4194&quot;</span></span>
+<span id="cb15-14"><a href="#cb15-14"></a><span class="co">#&gt; </span></span>
+<span id="cb15-15"><a href="#cb15-15"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 </div>
 <div id="icd-10-cm-5" class="section level2">
 <h2>ICD-10-CM</h2>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">get_codes</span>(<span class="dv">10</span>)[<span class="st">&quot;hemato_immu&quot;</span>, ]</span>
 <span id="cb16-2"><a href="#cb16-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="co">#&gt;  [1] &quot;B20&quot;   &quot;D55&quot;   &quot;D56&quot;   &quot;D57&quot;   &quot;D58&quot;   &quot;D60&quot;   &quot;D61&quot;   &quot;D71&quot;  </span></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="co">#&gt;  [9] &quot;D720&quot;  &quot;D80&quot;   &quot;D81&quot;   &quot;D82&quot;   &quot;D83&quot;   &quot;D84&quot;   &quot;D85&quot;   &quot;D87&quot;  </span></span>
-<span id="cb16-5"><a href="#cb16-5"></a><span class="co">#&gt; [17] &quot;D88&quot;   &quot;D86&quot;   &quot;M303&quot;  &quot;M359&quot;  &quot;B21&quot;   &quot;B22&quot;   &quot;B23&quot;   &quot;B24&quot;  </span></span>
-<span id="cb16-6"><a href="#cb16-6"></a><span class="co">#&gt; [25] &quot;D700&quot;  &quot;D704&quot;  &quot;D66&quot;   &quot;D682&quot;  &quot;D6941&quot; &quot;D6942&quot; &quot;D761&quot;  &quot;D762&quot; </span></span>
-<span id="cb16-7"><a href="#cb16-7"></a><span class="co">#&gt; [33] &quot;D763&quot;  &quot;M300&quot;  &quot;M310&quot;  &quot;M311&quot;  &quot;M3130&quot; &quot;M314&quot;  &quot;M316&quot;  &quot;M3210&quot;</span></span>
-<span id="cb16-8"><a href="#cb16-8"></a><span class="co">#&gt; [41] &quot;M3390&quot; &quot;M340&quot;  &quot;M341&quot;  &quot;M349&quot;  &quot;Z21&quot;  </span></span>
-<span id="cb16-9"><a href="#cb16-9"></a><span class="co">#&gt; </span></span>
-<span id="cb16-10"><a href="#cb16-10"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb16-11"><a href="#cb16-11"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb16-12"><a href="#cb16-12"></a><span class="co">#&gt; </span></span>
-<span id="cb16-13"><a href="#cb16-13"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb16-14"><a href="#cb16-14"></a><span class="co">#&gt;  [1] &quot;07TP0ZZ&quot; &quot;07TP4ZZ&quot; &quot;07YP0Z0&quot; &quot;07YP0Z1&quot; &quot;07YP0Z2&quot; &quot;30230AZ&quot; &quot;30230G0&quot;</span></span>
-<span id="cb16-15"><a href="#cb16-15"></a><span class="co">#&gt;  [8] &quot;30230G1&quot; &quot;30230X0&quot; &quot;30230X1&quot; &quot;30230Y0&quot; &quot;30230Y1&quot; &quot;30233AZ&quot; &quot;30233G0&quot;</span></span>
-<span id="cb16-16"><a href="#cb16-16"></a><span class="co">#&gt; [15] &quot;30233G1&quot; &quot;30233X0&quot; &quot;30233X1&quot; &quot;30233Y0&quot; &quot;30233Y1&quot; &quot;30240AZ&quot; &quot;30240G0&quot;</span></span>
-<span id="cb16-17"><a href="#cb16-17"></a><span class="co">#&gt; [22] &quot;30240G1&quot; &quot;30240X0&quot; &quot;30240X1&quot; &quot;30240Y0&quot; &quot;30240Y1&quot; &quot;30243AZ&quot; &quot;30243G0&quot;</span></span>
-<span id="cb16-18"><a href="#cb16-18"></a><span class="co">#&gt; [29] &quot;30243G1&quot; &quot;30243X0&quot; &quot;30243X1&quot; &quot;30243Y0&quot; &quot;30243Y1&quot; &quot;30250G0&quot; &quot;30250G1&quot;</span></span>
-<span id="cb16-19"><a href="#cb16-19"></a><span class="co">#&gt; [36] &quot;30250X0&quot; &quot;30250X1&quot; &quot;30250Y0&quot; &quot;30250Y1&quot; &quot;30253G0&quot; &quot;30253G1&quot; &quot;30253X0&quot;</span></span>
-<span id="cb16-20"><a href="#cb16-20"></a><span class="co">#&gt; [43] &quot;30253X1&quot; &quot;30253Y0&quot; &quot;30253Y1&quot; &quot;30260G0&quot; &quot;30260G1&quot; &quot;30260X0&quot; &quot;30260X1&quot;</span></span>
-<span id="cb16-21"><a href="#cb16-21"></a><span class="co">#&gt; [50] &quot;30260Y0&quot; &quot;30260Y1&quot; &quot;30263G0&quot; &quot;30263G1&quot; &quot;30263X0&quot; &quot;30263X1&quot; &quot;30263Y0&quot;</span></span>
-<span id="cb16-22"><a href="#cb16-22"></a><span class="co">#&gt; [57] &quot;30263Y1&quot;</span></span>
-<span id="cb16-23"><a href="#cb16-23"></a><span class="co">#&gt; </span></span>
-<span id="cb16-24"><a href="#cb16-24"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb16-25"><a href="#cb16-25"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co">#&gt;  [1] &quot;B20&quot;   &quot;D55&quot;   &quot;D56&quot;   &quot;D57&quot;   &quot;D58&quot;   &quot;D60&quot;   &quot;D61&quot;   &quot;D71&quot;   &quot;D720&quot; </span></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="co">#&gt; [10] &quot;D80&quot;   &quot;D81&quot;   &quot;D82&quot;   &quot;D83&quot;   &quot;D84&quot;   &quot;D85&quot;   &quot;D87&quot;   &quot;D88&quot;   &quot;D86&quot;  </span></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="co">#&gt; [19] &quot;M303&quot;  &quot;M359&quot;  &quot;B21&quot;   &quot;B22&quot;   &quot;B23&quot;   &quot;B24&quot;   &quot;D700&quot;  &quot;D704&quot;  &quot;D66&quot;  </span></span>
+<span id="cb16-6"><a href="#cb16-6"></a><span class="co">#&gt; [28] &quot;D682&quot;  &quot;D6941&quot; &quot;D6942&quot; &quot;D761&quot;  &quot;D762&quot;  &quot;D763&quot;  &quot;M300&quot;  &quot;M310&quot;  &quot;M311&quot; </span></span>
+<span id="cb16-7"><a href="#cb16-7"></a><span class="co">#&gt; [37] &quot;M3130&quot; &quot;M314&quot;  &quot;M316&quot;  &quot;M3210&quot; &quot;M3390&quot; &quot;M340&quot;  &quot;M341&quot;  &quot;M349&quot;  &quot;Z21&quot;  </span></span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="co">#&gt; </span></span>
+<span id="cb16-9"><a href="#cb16-9"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a><span class="co">#&gt; character(0)</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a><span class="co">#&gt; </span></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="co">#&gt;  [1] &quot;07TP0ZZ&quot; &quot;07TP4ZZ&quot; &quot;07YP0Z0&quot; &quot;07YP0Z1&quot; &quot;07YP0Z2&quot; &quot;30230AZ&quot; &quot;30230G0&quot;</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="co">#&gt;  [8] &quot;30230G1&quot; &quot;30230X0&quot; &quot;30230X1&quot; &quot;30230Y0&quot; &quot;30230Y1&quot; &quot;30233AZ&quot; &quot;30233G0&quot;</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="co">#&gt; [15] &quot;30233G1&quot; &quot;30233X0&quot; &quot;30233X1&quot; &quot;30233Y0&quot; &quot;30233Y1&quot; &quot;30240AZ&quot; &quot;30240G0&quot;</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a><span class="co">#&gt; [22] &quot;30240G1&quot; &quot;30240X0&quot; &quot;30240X1&quot; &quot;30240Y0&quot; &quot;30240Y1&quot; &quot;30243AZ&quot; &quot;30243G0&quot;</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a><span class="co">#&gt; [29] &quot;30243G1&quot; &quot;30243X0&quot; &quot;30243X1&quot; &quot;30243Y0&quot; &quot;30243Y1&quot; &quot;30250G0&quot; &quot;30250G1&quot;</span></span>
+<span id="cb16-18"><a href="#cb16-18"></a><span class="co">#&gt; [36] &quot;30250X0&quot; &quot;30250X1&quot; &quot;30250Y0&quot; &quot;30250Y1&quot; &quot;30253G0&quot; &quot;30253G1&quot; &quot;30253X0&quot;</span></span>
+<span id="cb16-19"><a href="#cb16-19"></a><span class="co">#&gt; [43] &quot;30253X1&quot; &quot;30253Y0&quot; &quot;30253Y1&quot; &quot;30260G0&quot; &quot;30260G1&quot; &quot;30260X0&quot; &quot;30260X1&quot;</span></span>
+<span id="cb16-20"><a href="#cb16-20"></a><span class="co">#&gt; [50] &quot;30260Y0&quot; &quot;30260Y1&quot; &quot;30263G0&quot; &quot;30263G1&quot; &quot;30263X0&quot; &quot;30263X1&quot; &quot;30263Y0&quot;</span></span>
+<span id="cb16-21"><a href="#cb16-21"></a><span class="co">#&gt; [57] &quot;30263Y1&quot;</span></span>
+<span id="cb16-22"><a href="#cb16-22"></a><span class="co">#&gt; </span></span>
+<span id="cb16-23"><a href="#cb16-23"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb16-24"><a href="#cb16-24"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 </div>
 </div>
 <div id="metabolic" class="section level1">
@@ -801,53 +806,51 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-9-CM</h2>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">get_codes</span>(<span class="dv">9</span>)[<span class="st">&quot;metabolic&quot;</span>, ]</span>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="co">#&gt;  [1] &quot;243&quot;   &quot;2532&quot;  &quot;2535&quot;  &quot;2536&quot;  &quot;2539&quot;  &quot;2550&quot;  &quot;25513&quot; &quot;2552&quot; </span></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="co">#&gt;  [9] &quot;270&quot;   &quot;271&quot;   &quot;272&quot;   &quot;2750&quot;  &quot;2751&quot;  &quot;2752&quot;  &quot;2753&quot;  &quot;2772&quot; </span></span>
-<span id="cb17-5"><a href="#cb17-5"></a><span class="co">#&gt; [17] &quot;2773&quot;  &quot;2774&quot;  &quot;2775&quot;  &quot;2776&quot;  &quot;2778&quot;  &quot;2779&quot;  &quot;V4585&quot; &quot;V5391&quot;</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a><span class="co">#&gt; [25] &quot;V6546&quot;</span></span>
-<span id="cb17-7"><a href="#cb17-7"></a><span class="co">#&gt; </span></span>
-<span id="cb17-8"><a href="#cb17-8"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a><span class="co">#&gt; </span></span>
-<span id="cb17-11"><a href="#cb17-11"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb17-12"><a href="#cb17-12"></a><span class="co">#&gt;  [1] &quot;064&quot;  &quot;0652&quot; &quot;0681&quot; &quot;073&quot;  &quot;0764&quot; &quot;0765&quot; &quot;0768&quot; &quot;0769&quot; &quot;6241&quot; &quot;645&quot; </span></span>
-<span id="cb17-13"><a href="#cb17-13"></a><span class="co">#&gt; [11] &quot;6551&quot; &quot;6553&quot; &quot;6561&quot; &quot;6563&quot; &quot;6841&quot; &quot;6849&quot; &quot;6851&quot; &quot;6859&quot; &quot;6861&quot; &quot;6869&quot;</span></span>
-<span id="cb17-14"><a href="#cb17-14"></a><span class="co">#&gt; [21] &quot;6871&quot; &quot;6879&quot; &quot;8606&quot;</span></span>
-<span id="cb17-15"><a href="#cb17-15"></a><span class="co">#&gt; </span></span>
-<span id="cb17-16"><a href="#cb17-16"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb17-17"><a href="#cb17-17"></a><span class="co">#&gt; [1] &quot;624&quot;</span></span></code></pre></div>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="co">#&gt;  [1] &quot;243&quot;   &quot;2532&quot;  &quot;2535&quot;  &quot;2536&quot;  &quot;2539&quot;  &quot;2550&quot;  &quot;25513&quot; &quot;2552&quot;  &quot;270&quot;  </span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="co">#&gt; [10] &quot;271&quot;   &quot;272&quot;   &quot;2750&quot;  &quot;2751&quot;  &quot;2752&quot;  &quot;2753&quot;  &quot;2772&quot;  &quot;2773&quot;  &quot;2774&quot; </span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="co">#&gt; [19] &quot;2775&quot;  &quot;2776&quot;  &quot;2778&quot;  &quot;2779&quot;  &quot;V4585&quot; &quot;V5391&quot; &quot;V6546&quot;</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="co">#&gt; </span></span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a><span class="co">#&gt; character(0)</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="co">#&gt; </span></span>
+<span id="cb17-10"><a href="#cb17-10"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="co">#&gt;  [1] &quot;064&quot;  &quot;0652&quot; &quot;0681&quot; &quot;073&quot;  &quot;0764&quot; &quot;0765&quot; &quot;0768&quot; &quot;0769&quot; &quot;6241&quot; &quot;645&quot; </span></span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="co">#&gt; [11] &quot;6551&quot; &quot;6553&quot; &quot;6561&quot; &quot;6563&quot; &quot;6841&quot; &quot;6849&quot; &quot;6851&quot; &quot;6859&quot; &quot;6861&quot; &quot;6869&quot;</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a><span class="co">#&gt; [21] &quot;6871&quot; &quot;6879&quot; &quot;8606&quot;</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a><span class="co">#&gt; </span></span>
+<span id="cb17-15"><a href="#cb17-15"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a><span class="co">#&gt; [1] &quot;624&quot;</span></span></code></pre></div>
 </div>
 <div id="icd-10-cm-6" class="section level2">
 <h2>ICD-10-CM</h2>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">get_codes</span>(<span class="dv">10</span>)[<span class="st">&quot;metabolic&quot;</span>, ]</span>
 <span id="cb18-2"><a href="#cb18-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="co">#&gt;  [1] &quot;E700&quot;  &quot;E702&quot;  &quot;E703&quot;  &quot;E704&quot;  &quot;E705&quot;  &quot;E708&quot;  &quot;E710&quot;  &quot;E711&quot; </span></span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="co">#&gt;  [9] &quot;E712&quot;  &quot;E713&quot;  &quot;E714&quot;  &quot;E715&quot;  &quot;E720&quot;  &quot;E721&quot;  &quot;E722&quot;  &quot;E723&quot; </span></span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="co">#&gt; [17] &quot;E724&quot;  &quot;E728&quot;  &quot;E729&quot;  &quot;E740&quot;  &quot;E741&quot;  &quot;E742&quot;  &quot;E743&quot;  &quot;E744&quot; </span></span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="co">#&gt; [25] &quot;E748&quot;  &quot;E749&quot;  &quot;E760&quot;  &quot;E761&quot;  &quot;E762&quot;  &quot;E763&quot;  &quot;E770&quot;  &quot;E771&quot; </span></span>
-<span id="cb18-7"><a href="#cb18-7"></a><span class="co">#&gt; [33] &quot;E780&quot;  &quot;E781&quot;  &quot;E782&quot;  &quot;E783&quot;  &quot;E784&quot;  &quot;E785&quot;  &quot;E786&quot;  &quot;E787&quot; </span></span>
-<span id="cb18-8"><a href="#cb18-8"></a><span class="co">#&gt; [41] &quot;E788&quot;  &quot;E789&quot;  &quot;E791&quot;  &quot;E798&quot;  &quot;E804&quot;  &quot;E805&quot;  &quot;E806&quot;  &quot;E807&quot; </span></span>
-<span id="cb18-9"><a href="#cb18-9"></a><span class="co">#&gt; [49] &quot;E830&quot;  &quot;E831&quot;  &quot;E833&quot;  &quot;E834&quot;  &quot;E88&quot;   &quot;H498&quot;  &quot;E85&quot;   &quot;E009&quot; </span></span>
-<span id="cb18-10"><a href="#cb18-10"></a><span class="co">#&gt; [57] &quot;E230&quot;  &quot;E232&quot;  &quot;E222&quot;  &quot;E233&quot;  &quot;E237&quot;  &quot;E240&quot;  &quot;E242&quot;  &quot;E243&quot; </span></span>
-<span id="cb18-11"><a href="#cb18-11"></a><span class="co">#&gt; [65] &quot;E248&quot;  &quot;E249&quot;  &quot;E2681&quot; &quot;E250&quot;  &quot;E258&quot;  &quot;E259&quot;  &quot;Z4681&quot; &quot;Z794&quot; </span></span>
-<span id="cb18-12"><a href="#cb18-12"></a><span class="co">#&gt; [73] &quot;Z9641&quot;</span></span>
-<span id="cb18-13"><a href="#cb18-13"></a><span class="co">#&gt; </span></span>
-<span id="cb18-14"><a href="#cb18-14"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb18-15"><a href="#cb18-15"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb18-16"><a href="#cb18-16"></a><span class="co">#&gt; </span></span>
-<span id="cb18-17"><a href="#cb18-17"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb18-18"><a href="#cb18-18"></a><span class="co">#&gt;  [1] &quot;0GT00ZZ&quot; &quot;0GT04ZZ&quot; &quot;0GT40ZZ&quot; &quot;0GT44ZZ&quot; &quot;0GTK0ZZ&quot; &quot;0GTK4ZZ&quot; &quot;0GTR0ZZ&quot;</span></span>
-<span id="cb18-19"><a href="#cb18-19"></a><span class="co">#&gt;  [8] &quot;0GTR4ZZ&quot; &quot;0JH60VZ&quot; &quot;0JH63VZ&quot; &quot;0JH70VZ&quot; &quot;0JH73VZ&quot; &quot;0JH80VZ&quot; &quot;0JH83VZ&quot;</span></span>
-<span id="cb18-20"><a href="#cb18-20"></a><span class="co">#&gt; [15] &quot;0JHD0VZ&quot; &quot;0JHD3VZ&quot; &quot;0JHF0VZ&quot; &quot;0JHF3VZ&quot; &quot;0JHG0VZ&quot; &quot;0JHG3VZ&quot; &quot;0JHH0VZ&quot;</span></span>
-<span id="cb18-21"><a href="#cb18-21"></a><span class="co">#&gt; [22] &quot;0JHH3VZ&quot; &quot;0JHL0VZ&quot; &quot;0JHL3VZ&quot; &quot;0JHM0VZ&quot; &quot;0JHM3VZ&quot; &quot;0JHN0VZ&quot; &quot;0JHN3VZ&quot;</span></span>
-<span id="cb18-22"><a href="#cb18-22"></a><span class="co">#&gt; [29] &quot;0JHP0VZ&quot; &quot;0JHP3VZ&quot; &quot;0JHT0VZ&quot; &quot;0JHT3VZ&quot; &quot;0UT20ZZ&quot; &quot;0UT24ZZ&quot; &quot;0UT27ZZ&quot;</span></span>
-<span id="cb18-23"><a href="#cb18-23"></a><span class="co">#&gt; [36] &quot;0UT28ZZ&quot; &quot;0UT2FZZ&quot; &quot;0UT40ZZ&quot; &quot;0UT44ZZ&quot; &quot;0UT47ZZ&quot; &quot;0UT48ZZ&quot; &quot;0UT70ZZ&quot;</span></span>
-<span id="cb18-24"><a href="#cb18-24"></a><span class="co">#&gt; [43] &quot;0UT74ZZ&quot; &quot;0UT90ZZ&quot; &quot;0UT94ZZ&quot; &quot;0UT97ZZ&quot; &quot;0UT98ZZ&quot; &quot;0UT9FZZ&quot; &quot;0UTC0ZZ&quot;</span></span>
-<span id="cb18-25"><a href="#cb18-25"></a><span class="co">#&gt; [50] &quot;0UTC7ZZ&quot; &quot;0UTC8ZZ&quot; &quot;0VTC0ZZ&quot; &quot;0VTC4ZZ&quot; &quot;0W4M070&quot; &quot;0W4M0J0&quot; &quot;0W4M0K0&quot;</span></span>
-<span id="cb18-26"><a href="#cb18-26"></a><span class="co">#&gt; [57] &quot;0W4M0Z0&quot; &quot;0W4N071&quot; &quot;0W4N0J1&quot; &quot;0W4N0K1&quot; &quot;0W4N0Z1&quot;</span></span>
-<span id="cb18-27"><a href="#cb18-27"></a><span class="co">#&gt; </span></span>
-<span id="cb18-28"><a href="#cb18-28"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb18-29"><a href="#cb18-29"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="co">#&gt;  [1] &quot;E700&quot;  &quot;E702&quot;  &quot;E703&quot;  &quot;E704&quot;  &quot;E705&quot;  &quot;E708&quot;  &quot;E710&quot;  &quot;E711&quot;  &quot;E712&quot; </span></span>
+<span id="cb18-4"><a href="#cb18-4"></a><span class="co">#&gt; [10] &quot;E713&quot;  &quot;E714&quot;  &quot;E715&quot;  &quot;E720&quot;  &quot;E721&quot;  &quot;E722&quot;  &quot;E723&quot;  &quot;E724&quot;  &quot;E728&quot; </span></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="co">#&gt; [19] &quot;E729&quot;  &quot;E740&quot;  &quot;E741&quot;  &quot;E742&quot;  &quot;E743&quot;  &quot;E744&quot;  &quot;E748&quot;  &quot;E749&quot;  &quot;E760&quot; </span></span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="co">#&gt; [28] &quot;E761&quot;  &quot;E762&quot;  &quot;E763&quot;  &quot;E770&quot;  &quot;E771&quot;  &quot;E780&quot;  &quot;E781&quot;  &quot;E782&quot;  &quot;E783&quot; </span></span>
+<span id="cb18-7"><a href="#cb18-7"></a><span class="co">#&gt; [37] &quot;E784&quot;  &quot;E785&quot;  &quot;E786&quot;  &quot;E787&quot;  &quot;E788&quot;  &quot;E789&quot;  &quot;E791&quot;  &quot;E798&quot;  &quot;E804&quot; </span></span>
+<span id="cb18-8"><a href="#cb18-8"></a><span class="co">#&gt; [46] &quot;E805&quot;  &quot;E806&quot;  &quot;E807&quot;  &quot;E830&quot;  &quot;E831&quot;  &quot;E833&quot;  &quot;E834&quot;  &quot;E88&quot;   &quot;H498&quot; </span></span>
+<span id="cb18-9"><a href="#cb18-9"></a><span class="co">#&gt; [55] &quot;E85&quot;   &quot;E009&quot;  &quot;E230&quot;  &quot;E232&quot;  &quot;E222&quot;  &quot;E233&quot;  &quot;E237&quot;  &quot;E240&quot;  &quot;E242&quot; </span></span>
+<span id="cb18-10"><a href="#cb18-10"></a><span class="co">#&gt; [64] &quot;E243&quot;  &quot;E248&quot;  &quot;E249&quot;  &quot;E2681&quot; &quot;E250&quot;  &quot;E258&quot;  &quot;E259&quot;  &quot;Z4681&quot; &quot;Z794&quot; </span></span>
+<span id="cb18-11"><a href="#cb18-11"></a><span class="co">#&gt; [73] &quot;Z9641&quot;</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a><span class="co">#&gt; </span></span>
+<span id="cb18-13"><a href="#cb18-13"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb18-14"><a href="#cb18-14"></a><span class="co">#&gt; character(0)</span></span>
+<span id="cb18-15"><a href="#cb18-15"></a><span class="co">#&gt; </span></span>
+<span id="cb18-16"><a href="#cb18-16"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb18-17"><a href="#cb18-17"></a><span class="co">#&gt;  [1] &quot;0GT00ZZ&quot; &quot;0GT04ZZ&quot; &quot;0GT40ZZ&quot; &quot;0GT44ZZ&quot; &quot;0GTK0ZZ&quot; &quot;0GTK4ZZ&quot; &quot;0GTR0ZZ&quot;</span></span>
+<span id="cb18-18"><a href="#cb18-18"></a><span class="co">#&gt;  [8] &quot;0GTR4ZZ&quot; &quot;0JH60VZ&quot; &quot;0JH63VZ&quot; &quot;0JH70VZ&quot; &quot;0JH73VZ&quot; &quot;0JH80VZ&quot; &quot;0JH83VZ&quot;</span></span>
+<span id="cb18-19"><a href="#cb18-19"></a><span class="co">#&gt; [15] &quot;0JHD0VZ&quot; &quot;0JHD3VZ&quot; &quot;0JHF0VZ&quot; &quot;0JHF3VZ&quot; &quot;0JHG0VZ&quot; &quot;0JHG3VZ&quot; &quot;0JHH0VZ&quot;</span></span>
+<span id="cb18-20"><a href="#cb18-20"></a><span class="co">#&gt; [22] &quot;0JHH3VZ&quot; &quot;0JHL0VZ&quot; &quot;0JHL3VZ&quot; &quot;0JHM0VZ&quot; &quot;0JHM3VZ&quot; &quot;0JHN0VZ&quot; &quot;0JHN3VZ&quot;</span></span>
+<span id="cb18-21"><a href="#cb18-21"></a><span class="co">#&gt; [29] &quot;0JHP0VZ&quot; &quot;0JHP3VZ&quot; &quot;0JHT0VZ&quot; &quot;0JHT3VZ&quot; &quot;0UT20ZZ&quot; &quot;0UT24ZZ&quot; &quot;0UT27ZZ&quot;</span></span>
+<span id="cb18-22"><a href="#cb18-22"></a><span class="co">#&gt; [36] &quot;0UT28ZZ&quot; &quot;0UT2FZZ&quot; &quot;0UT40ZZ&quot; &quot;0UT44ZZ&quot; &quot;0UT47ZZ&quot; &quot;0UT48ZZ&quot; &quot;0UT70ZZ&quot;</span></span>
+<span id="cb18-23"><a href="#cb18-23"></a><span class="co">#&gt; [43] &quot;0UT74ZZ&quot; &quot;0UT90ZZ&quot; &quot;0UT94ZZ&quot; &quot;0UT97ZZ&quot; &quot;0UT98ZZ&quot; &quot;0UT9FZZ&quot; &quot;0UTC0ZZ&quot;</span></span>
+<span id="cb18-24"><a href="#cb18-24"></a><span class="co">#&gt; [50] &quot;0UTC7ZZ&quot; &quot;0UTC8ZZ&quot; &quot;0VTC0ZZ&quot; &quot;0VTC4ZZ&quot; &quot;0W4M070&quot; &quot;0W4M0J0&quot; &quot;0W4M0K0&quot;</span></span>
+<span id="cb18-25"><a href="#cb18-25"></a><span class="co">#&gt; [57] &quot;0W4M0Z0&quot; &quot;0W4N071&quot; &quot;0W4N0J1&quot; &quot;0W4N0K1&quot; &quot;0W4N0Z1&quot;</span></span>
+<span id="cb18-26"><a href="#cb18-26"></a><span class="co">#&gt; </span></span>
+<span id="cb18-27"><a href="#cb18-27"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb18-28"><a href="#cb18-28"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 </div>
 </div>
 <div id="other-congenital-or-genetic-defect" class="section level1">
@@ -872,13 +875,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-10-CM</h2>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">get_codes</span>(<span class="dv">10</span>)[<span class="st">&quot;congeni_genetic&quot;</span>, ]</span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="co">#&gt;  [1] &quot;E343&quot;  &quot;K449&quot;  &quot;M410&quot;  &quot;M412&quot;  &quot;M4130&quot; &quot;M418&quot;  &quot;M419&quot;  &quot;M4330&quot;</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="co">#&gt;  [9] &quot;M965&quot;  &quot;Q722&quot;  &quot;Q750&quot;  &quot;Q752&quot;  &quot;Q759&quot;  &quot;Q760&quot;  &quot;Q761&quot;  &quot;Q762&quot; </span></span>
-<span id="cb20-5"><a href="#cb20-5"></a><span class="co">#&gt; [17] &quot;Q764&quot;  &quot;Q765&quot;  &quot;Q766&quot;  &quot;Q767&quot;  &quot;Q77&quot;   &quot;Q780&quot;  &quot;Q781&quot;  &quot;Q782&quot; </span></span>
-<span id="cb20-6"><a href="#cb20-6"></a><span class="co">#&gt; [25] &quot;Q783&quot;  &quot;Q784&quot;  &quot;Q788&quot;  &quot;Q789&quot;  &quot;Q790&quot;  &quot;Q791&quot;  &quot;Q792&quot;  &quot;Q793&quot; </span></span>
-<span id="cb20-7"><a href="#cb20-7"></a><span class="co">#&gt; [33] &quot;Q794&quot;  &quot;Q799&quot;  &quot;Q795&quot;  &quot;Q8740&quot; &quot;Q8781&quot; &quot;Q8789&quot; &quot;Q897&quot;  &quot;Q899&quot; </span></span>
-<span id="cb20-8"><a href="#cb20-8"></a><span class="co">#&gt; [41] &quot;Q909&quot;  &quot;Q913&quot;  &quot;Q914&quot;  &quot;Q917&quot;  &quot;Q928&quot;  &quot;Q93&quot;   &quot;Q950&quot;  &quot;Q969&quot; </span></span>
-<span id="cb20-9"><a href="#cb20-9"></a><span class="co">#&gt; [49] &quot;Q97&quot;   &quot;Q98&quot;   &quot;Q992&quot;  &quot;Q998&quot;  &quot;Q999&quot;  &quot;Q898&quot;  &quot;Q81&quot;  </span></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="co">#&gt;  [1] &quot;E343&quot;  &quot;K449&quot;  &quot;M410&quot;  &quot;M412&quot;  &quot;M4130&quot; &quot;M418&quot;  &quot;M419&quot;  &quot;M4330&quot; &quot;M965&quot; </span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="co">#&gt; [10] &quot;Q722&quot;  &quot;Q750&quot;  &quot;Q752&quot;  &quot;Q759&quot;  &quot;Q760&quot;  &quot;Q761&quot;  &quot;Q762&quot;  &quot;Q764&quot;  &quot;Q765&quot; </span></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="co">#&gt; [19] &quot;Q766&quot;  &quot;Q767&quot;  &quot;Q77&quot;   &quot;Q780&quot;  &quot;Q781&quot;  &quot;Q782&quot;  &quot;Q783&quot;  &quot;Q784&quot;  &quot;Q788&quot; </span></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="co">#&gt; [28] &quot;Q789&quot;  &quot;Q790&quot;  &quot;Q791&quot;  &quot;Q792&quot;  &quot;Q793&quot;  &quot;Q794&quot;  &quot;Q799&quot;  &quot;Q795&quot;  &quot;Q8740&quot;</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="co">#&gt; [37] &quot;Q8781&quot; &quot;Q8789&quot; &quot;Q897&quot;  &quot;Q899&quot;  &quot;Q909&quot;  &quot;Q913&quot;  &quot;Q914&quot;  &quot;Q917&quot;  &quot;Q928&quot; </span></span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="co">#&gt; [46] &quot;Q93&quot;   &quot;Q950&quot;  &quot;Q969&quot;  &quot;Q97&quot;   &quot;Q98&quot;   &quot;Q992&quot;  &quot;Q998&quot;  &quot;Q999&quot;  &quot;Q898&quot; </span></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="co">#&gt; [55] &quot;Q81&quot;  </span></span>
 <span id="cb20-10"><a href="#cb20-10"></a><span class="co">#&gt; </span></span>
 <span id="cb20-11"><a href="#cb20-11"></a><span class="co">#&gt; $dx_fixed</span></span>
 <span id="cb20-12"><a href="#cb20-12"></a><span class="co">#&gt; character(0)</span></span>
@@ -896,8 +899,8 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-9-CM</h2>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">get_codes</span>(<span class="dv">9</span>)[<span class="st">&quot;malignancy&quot;</span>, ]</span>
 <span id="cb21-2"><a href="#cb21-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a><span class="co">#&gt;  [1] &quot;14&quot;    &quot;15&quot;    &quot;16&quot;    &quot;17&quot;    &quot;18&quot;    &quot;19&quot;    &quot;20&quot;    &quot;23&quot;   </span></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="co">#&gt;  [9] &quot;V4281&quot; &quot;V4282&quot;</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="co">#&gt;  [1] &quot;14&quot;    &quot;15&quot;    &quot;16&quot;    &quot;17&quot;    &quot;18&quot;    &quot;19&quot;    &quot;20&quot;    &quot;23&quot;    &quot;V4281&quot;</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="co">#&gt; [10] &quot;V4282&quot;</span></span>
 <span id="cb21-5"><a href="#cb21-5"></a><span class="co">#&gt; </span></span>
 <span id="cb21-6"><a href="#cb21-6"></a><span class="co">#&gt; $dx_fixed</span></span>
 <span id="cb21-7"><a href="#cb21-7"></a><span class="co">#&gt; character(0)</span></span>
@@ -912,10 +915,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-10-CM</h2>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">get_codes</span>(<span class="dv">10</span>)[<span class="st">&quot;malignancy&quot;</span>, ]</span>
 <span id="cb22-2"><a href="#cb22-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="co">#&gt;  [1] &quot;C&quot;     &quot;D00&quot;   &quot;D01&quot;   &quot;D02&quot;   &quot;D03&quot;   &quot;D04&quot;   &quot;D05&quot;   &quot;D06&quot;  </span></span>
-<span id="cb22-4"><a href="#cb22-4"></a><span class="co">#&gt;  [9] &quot;D07&quot;   &quot;D08&quot;   &quot;D09&quot;   &quot;D37&quot;   &quot;D38&quot;   &quot;D39&quot;   &quot;D3A0&quot;  &quot;D40&quot;  </span></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="co">#&gt; [17] &quot;D41&quot;   &quot;D42&quot;   &quot;D43&quot;   &quot;D44&quot;   &quot;D45&quot;   &quot;D46&quot;   &quot;D47&quot;   &quot;D48&quot;  </span></span>
-<span id="cb22-6"><a href="#cb22-6"></a><span class="co">#&gt; [25] &quot;D49&quot;   &quot;Q850&quot;  &quot;Z9481&quot; &quot;Z9484&quot; &quot;T8600&quot; &quot;T8601&quot; &quot;T8602&quot; &quot;T8609&quot;</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="co">#&gt;  [1] &quot;C&quot;     &quot;D00&quot;   &quot;D01&quot;   &quot;D02&quot;   &quot;D03&quot;   &quot;D04&quot;   &quot;D05&quot;   &quot;D06&quot;   &quot;D07&quot;  </span></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="co">#&gt; [10] &quot;D08&quot;   &quot;D09&quot;   &quot;D37&quot;   &quot;D38&quot;   &quot;D39&quot;   &quot;D3A0&quot;  &quot;D40&quot;   &quot;D41&quot;   &quot;D42&quot;  </span></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="co">#&gt; [19] &quot;D43&quot;   &quot;D44&quot;   &quot;D45&quot;   &quot;D46&quot;   &quot;D47&quot;   &quot;D48&quot;   &quot;D49&quot;   &quot;Q850&quot;  &quot;Z9481&quot;</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="co">#&gt; [28] &quot;Z9484&quot; &quot;T8600&quot; &quot;T8601&quot; &quot;T8602&quot; &quot;T8609&quot;</span></span>
 <span id="cb22-7"><a href="#cb22-7"></a><span class="co">#&gt; </span></span>
 <span id="cb22-8"><a href="#cb22-8"></a><span class="co">#&gt; $dx_fixed</span></span>
 <span id="cb22-9"><a href="#cb22-9"></a><span class="co">#&gt; character(0)</span></span>
@@ -939,40 +942,38 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-9-CM</h2>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">get_codes</span>(<span class="dv">9</span>)[<span class="st">&quot;neonatal&quot;</span>, ]</span>
 <span id="cb23-2"><a href="#cb23-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="co">#&gt;  [1] &quot;76401&quot; &quot;76402&quot; &quot;76411&quot; &quot;76412&quot; &quot;76421&quot; &quot;76422&quot; &quot;76491&quot; &quot;76492&quot;</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a><span class="co">#&gt;  [9] &quot;76501&quot; &quot;76502&quot; &quot;76511&quot; &quot;76512&quot; &quot;76521&quot; &quot;76522&quot; &quot;76523&quot; &quot;7670&quot; </span></span>
-<span id="cb23-5"><a href="#cb23-5"></a><span class="co">#&gt; [17] &quot;7674&quot;  &quot;7685&quot;  &quot;7687&quot;  &quot;7689&quot;  &quot;7702&quot;  &quot;7707&quot;  &quot;7710&quot;  &quot;7711&quot; </span></span>
-<span id="cb23-6"><a href="#cb23-6"></a><span class="co">#&gt; [25] &quot;77213&quot; &quot;77214&quot; &quot;7733&quot;  &quot;7734&quot;  &quot;7747&quot;  &quot;7765&quot;  &quot;77753&quot; &quot;7780&quot; </span></span>
-<span id="cb23-7"><a href="#cb23-7"></a><span class="co">#&gt; [33] &quot;7797&quot; </span></span>
-<span id="cb23-8"><a href="#cb23-8"></a><span class="co">#&gt; </span></span>
-<span id="cb23-9"><a href="#cb23-9"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb23-10"><a href="#cb23-10"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb23-11"><a href="#cb23-11"></a><span class="co">#&gt; </span></span>
-<span id="cb23-12"><a href="#cb23-12"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb23-13"><a href="#cb23-13"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb23-14"><a href="#cb23-14"></a><span class="co">#&gt; </span></span>
-<span id="cb23-15"><a href="#cb23-15"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb23-16"><a href="#cb23-16"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="co">#&gt;  [1] &quot;76401&quot; &quot;76402&quot; &quot;76411&quot; &quot;76412&quot; &quot;76421&quot; &quot;76422&quot; &quot;76491&quot; &quot;76492&quot; &quot;76501&quot;</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a><span class="co">#&gt; [10] &quot;76502&quot; &quot;76511&quot; &quot;76512&quot; &quot;76521&quot; &quot;76522&quot; &quot;76523&quot; &quot;7670&quot;  &quot;7674&quot;  &quot;7685&quot; </span></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="co">#&gt; [19] &quot;7687&quot;  &quot;7689&quot;  &quot;7702&quot;  &quot;7707&quot;  &quot;7710&quot;  &quot;7711&quot;  &quot;77213&quot; &quot;77214&quot; &quot;7733&quot; </span></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="co">#&gt; [28] &quot;7734&quot;  &quot;7747&quot;  &quot;7765&quot;  &quot;77753&quot; &quot;7780&quot;  &quot;7797&quot; </span></span>
+<span id="cb23-7"><a href="#cb23-7"></a><span class="co">#&gt; </span></span>
+<span id="cb23-8"><a href="#cb23-8"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a><span class="co">#&gt; character(0)</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a><span class="co">#&gt; </span></span>
+<span id="cb23-11"><a href="#cb23-11"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb23-12"><a href="#cb23-12"></a><span class="co">#&gt; character(0)</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="co">#&gt; </span></span>
+<span id="cb23-14"><a href="#cb23-14"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb23-15"><a href="#cb23-15"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 </div>
 <div id="icd-10-cm-9" class="section level2">
 <h2>ICD-10-CM</h2>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">get_codes</span>(<span class="dv">10</span>)[<span class="st">&quot;neonatal&quot;</span>, ]</span>
 <span id="cb24-2"><a href="#cb24-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="co">#&gt;  [1] &quot;P0501&quot; &quot;P0511&quot; &quot;P0502&quot; &quot;P0512&quot; &quot;P052&quot;  &quot;P059&quot;  &quot;P0701&quot; &quot;P0702&quot;</span></span>
-<span id="cb24-4"><a href="#cb24-4"></a><span class="co">#&gt;  [9] &quot;P0721&quot; &quot;P0722&quot; &quot;P0723&quot; &quot;P0724&quot; &quot;P0725&quot; &quot;P100&quot;  &quot;P101&quot;  &quot;P104&quot; </span></span>
-<span id="cb24-5"><a href="#cb24-5"></a><span class="co">#&gt; [17] &quot;P524&quot;  &quot;P528&quot;  &quot;P115&quot;  &quot;P84&quot;   &quot;P916&quot;  &quot;P210&quot;  &quot;P250&quot;  &quot;P251&quot; </span></span>
-<span id="cb24-6"><a href="#cb24-6"></a><span class="co">#&gt; [25] &quot;P253&quot;  &quot;P258&quot;  &quot;P219&quot;  &quot;P270&quot;  &quot;P271&quot;  &quot;P278&quot;  &quot;P350&quot;  &quot;P351&quot; </span></span>
-<span id="cb24-7"><a href="#cb24-7"></a><span class="co">#&gt; [33] &quot;P2521&quot; &quot;P2522&quot; &quot;P560&quot;  &quot;P570&quot;  &quot;P578&quot;  &quot;P613&quot;  &quot;P614&quot;  &quot;P773&quot; </span></span>
-<span id="cb24-8"><a href="#cb24-8"></a><span class="co">#&gt; [41] &quot;P832&quot;  &quot;P912&quot; </span></span>
-<span id="cb24-9"><a href="#cb24-9"></a><span class="co">#&gt; </span></span>
-<span id="cb24-10"><a href="#cb24-10"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb24-11"><a href="#cb24-11"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb24-12"><a href="#cb24-12"></a><span class="co">#&gt; </span></span>
-<span id="cb24-13"><a href="#cb24-13"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb24-14"><a href="#cb24-14"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb24-15"><a href="#cb24-15"></a><span class="co">#&gt; </span></span>
-<span id="cb24-16"><a href="#cb24-16"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb24-17"><a href="#cb24-17"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="co">#&gt;  [1] &quot;P0501&quot; &quot;P0511&quot; &quot;P0502&quot; &quot;P0512&quot; &quot;P052&quot;  &quot;P059&quot;  &quot;P0701&quot; &quot;P0702&quot; &quot;P0721&quot;</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="co">#&gt; [10] &quot;P0722&quot; &quot;P0723&quot; &quot;P0724&quot; &quot;P0725&quot; &quot;P100&quot;  &quot;P101&quot;  &quot;P104&quot;  &quot;P524&quot;  &quot;P528&quot; </span></span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="co">#&gt; [19] &quot;P115&quot;  &quot;P84&quot;   &quot;P916&quot;  &quot;P210&quot;  &quot;P250&quot;  &quot;P251&quot;  &quot;P253&quot;  &quot;P258&quot;  &quot;P219&quot; </span></span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="co">#&gt; [28] &quot;P270&quot;  &quot;P271&quot;  &quot;P278&quot;  &quot;P350&quot;  &quot;P351&quot;  &quot;P2521&quot; &quot;P2522&quot; &quot;P560&quot;  &quot;P570&quot; </span></span>
+<span id="cb24-7"><a href="#cb24-7"></a><span class="co">#&gt; [37] &quot;P578&quot;  &quot;P613&quot;  &quot;P614&quot;  &quot;P773&quot;  &quot;P832&quot;  &quot;P912&quot; </span></span>
+<span id="cb24-8"><a href="#cb24-8"></a><span class="co">#&gt; </span></span>
+<span id="cb24-9"><a href="#cb24-9"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a><span class="co">#&gt; character(0)</span></span>
+<span id="cb24-11"><a href="#cb24-11"></a><span class="co">#&gt; </span></span>
+<span id="cb24-12"><a href="#cb24-12"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb24-13"><a href="#cb24-13"></a><span class="co">#&gt; character(0)</span></span>
+<span id="cb24-14"><a href="#cb24-14"></a><span class="co">#&gt; </span></span>
+<span id="cb24-15"><a href="#cb24-15"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb24-16"><a href="#cb24-16"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 </div>
 </div>
 <div id="technology-dependency" class="section level1">
@@ -981,35 +982,34 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-9-CM</h2>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">get_codes</span>(<span class="dv">9</span>)[<span class="st">&quot;tech_dep&quot;</span>, ]</span>
 <span id="cb25-2"><a href="#cb25-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="co">#&gt;  [1] &quot;5190&quot;  &quot;5364&quot;  &quot;9960&quot;  &quot;9961&quot;  &quot;9962&quot;  &quot;9964&quot;  &quot;99661&quot; &quot;99662&quot;</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="co">#&gt;  [9] &quot;99663&quot; &quot;99666&quot; &quot;99667&quot; &quot;99668&quot; &quot;9969&quot;  &quot;V433&quot;  &quot;V440&quot;  &quot;V441&quot; </span></span>
-<span id="cb25-5"><a href="#cb25-5"></a><span class="co">#&gt; [17] &quot;V442&quot;  &quot;V443&quot;  &quot;V444&quot;  &quot;V445&quot;  &quot;V446&quot;  &quot;V450&quot;  &quot;V451&quot;  &quot;V452&quot; </span></span>
-<span id="cb25-6"><a href="#cb25-6"></a><span class="co">#&gt; [25] &quot;V460&quot;  &quot;V461&quot;  &quot;V462&quot;  &quot;V5301&quot; &quot;V5302&quot; &quot;V5331&quot; &quot;V5332&quot; &quot;V5339&quot;</span></span>
-<span id="cb25-7"><a href="#cb25-7"></a><span class="co">#&gt; [33] &quot;V5350&quot; &quot;V5351&quot; &quot;V5359&quot; &quot;V536&quot;  &quot;V550&quot;  &quot;V551&quot;  &quot;V552&quot;  &quot;V553&quot; </span></span>
-<span id="cb25-8"><a href="#cb25-8"></a><span class="co">#&gt; [41] &quot;V554&quot;  &quot;V555&quot;  &quot;V556&quot; </span></span>
-<span id="cb25-9"><a href="#cb25-9"></a><span class="co">#&gt; </span></span>
-<span id="cb25-10"><a href="#cb25-10"></a><span class="co">#&gt; $dx_fixed</span></span>
-<span id="cb25-11"><a href="#cb25-11"></a><span class="co">#&gt; character(0)</span></span>
-<span id="cb25-12"><a href="#cb25-12"></a><span class="co">#&gt; </span></span>
-<span id="cb25-13"><a href="#cb25-13"></a><span class="co">#&gt; $pc</span></span>
-<span id="cb25-14"><a href="#cb25-14"></a><span class="co">#&gt;   [1] &quot;0221&quot; &quot;0222&quot; &quot;0231&quot; &quot;0232&quot; &quot;0233&quot; &quot;0234&quot; &quot;0235&quot; &quot;0239&quot; &quot;0241&quot; &quot;0242&quot;</span></span>
-<span id="cb25-15"><a href="#cb25-15"></a><span class="co">#&gt;  [11] &quot;0293&quot; &quot;0371&quot; &quot;0372&quot; &quot;0379&quot; &quot;0393&quot; &quot;0397&quot; &quot;0492&quot; &quot;0050&quot; &quot;0051&quot; &quot;0053&quot;</span></span>
-<span id="cb25-16"><a href="#cb25-16"></a><span class="co">#&gt;  [21] &quot;0054&quot; &quot;0055&quot; &quot;0057&quot; &quot;1751&quot; &quot;1752&quot; &quot;3741&quot; &quot;3752&quot; &quot;3753&quot; &quot;3754&quot; &quot;3755&quot;</span></span>
-<span id="cb25-17"><a href="#cb25-17"></a><span class="co">#&gt;  [31] &quot;3760&quot; &quot;3761&quot; &quot;3763&quot; &quot;3765&quot; &quot;3766&quot; &quot;3767&quot; &quot;3768&quot; &quot;3771&quot; &quot;3772&quot; &quot;3774&quot;</span></span>
-<span id="cb25-18"><a href="#cb25-18"></a><span class="co">#&gt;  [41] &quot;3776&quot; &quot;3779&quot; &quot;3780&quot; &quot;3781&quot; &quot;3782&quot; &quot;3783&quot; &quot;3785&quot; &quot;3786&quot; &quot;3787&quot; &quot;3789&quot;</span></span>
-<span id="cb25-19"><a href="#cb25-19"></a><span class="co">#&gt;  [51] &quot;3794&quot; &quot;3795&quot; &quot;3796&quot; &quot;3797&quot; &quot;3798&quot; &quot;3981&quot; &quot;3982&quot; &quot;3983&quot; &quot;3984&quot; &quot;3985&quot;</span></span>
-<span id="cb25-20"><a href="#cb25-20"></a><span class="co">#&gt;  [61] &quot;8945&quot; &quot;8946&quot; &quot;8947&quot; &quot;8948&quot; &quot;8949&quot; &quot;3121&quot; &quot;3129&quot; &quot;3141&quot; &quot;3174&quot; &quot;3321&quot;</span></span>
-<span id="cb25-21"><a href="#cb25-21"></a><span class="co">#&gt;  [71] &quot;3485&quot; &quot;9655&quot; &quot;9723&quot; &quot;3895&quot; &quot;3927&quot; &quot;3942&quot; &quot;3993&quot; &quot;3994&quot; &quot;3995&quot; &quot;5498&quot;</span></span>
-<span id="cb25-22"><a href="#cb25-22"></a><span class="co">#&gt;  [81] &quot;5502&quot; &quot;5503&quot; &quot;5504&quot; &quot;5512&quot; &quot;5593&quot; &quot;5594&quot; &quot;5597&quot; &quot;5651&quot; &quot;5652&quot; &quot;5661&quot;</span></span>
-<span id="cb25-23"><a href="#cb25-23"></a><span class="co">#&gt;  [91] &quot;5662&quot; &quot;5672&quot; &quot;5673&quot; &quot;5674&quot; &quot;5675&quot; &quot;5721&quot; &quot;5722&quot; &quot;5993&quot; &quot;5994&quot; &quot;8607&quot;</span></span>
-<span id="cb25-24"><a href="#cb25-24"></a><span class="co">#&gt; [101] &quot;9645&quot; &quot;9646&quot; &quot;9647&quot; &quot;4210&quot; &quot;4211&quot; &quot;4281&quot; &quot;4311&quot; &quot;4319&quot; &quot;4412&quot; &quot;4432&quot;</span></span>
-<span id="cb25-25"><a href="#cb25-25"></a><span class="co">#&gt; [111] &quot;4438&quot; &quot;4439&quot; &quot;4613&quot; &quot;4622&quot; &quot;4623&quot; &quot;4632&quot; &quot;4640&quot; &quot;4641&quot; &quot;4643&quot; &quot;9624&quot;</span></span>
-<span id="cb25-26"><a href="#cb25-26"></a><span class="co">#&gt; [121] &quot;9636&quot; &quot;9702&quot; &quot;8100&quot; &quot;8101&quot; &quot;8102&quot; &quot;8103&quot; &quot;8104&quot; &quot;8105&quot; &quot;8106&quot; &quot;8107&quot;</span></span>
-<span id="cb25-27"><a href="#cb25-27"></a><span class="co">#&gt; [131] &quot;8108&quot; &quot;8109&quot; &quot;8130&quot; &quot;8131&quot; &quot;8132&quot; &quot;8133&quot; &quot;8134&quot; &quot;8135&quot; &quot;8136&quot; &quot;8137&quot;</span></span>
-<span id="cb25-28"><a href="#cb25-28"></a><span class="co">#&gt; [141] &quot;8138&quot; &quot;8139&quot; &quot;8451&quot;</span></span>
-<span id="cb25-29"><a href="#cb25-29"></a><span class="co">#&gt; </span></span>
-<span id="cb25-30"><a href="#cb25-30"></a><span class="co">#&gt; $pc_fixed</span></span>
-<span id="cb25-31"><a href="#cb25-31"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="co">#&gt;  [1] &quot;5190&quot;  &quot;5364&quot;  &quot;9960&quot;  &quot;9961&quot;  &quot;9962&quot;  &quot;9964&quot;  &quot;99661&quot; &quot;99662&quot; &quot;99663&quot;</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="co">#&gt; [10] &quot;99666&quot; &quot;99667&quot; &quot;99668&quot; &quot;9969&quot;  &quot;V433&quot;  &quot;V440&quot;  &quot;V441&quot;  &quot;V442&quot;  &quot;V443&quot; </span></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="co">#&gt; [19] &quot;V444&quot;  &quot;V445&quot;  &quot;V446&quot;  &quot;V450&quot;  &quot;V451&quot;  &quot;V452&quot;  &quot;V460&quot;  &quot;V461&quot;  &quot;V462&quot; </span></span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="co">#&gt; [28] &quot;V5301&quot; &quot;V5302&quot; &quot;V5331&quot; &quot;V5332&quot; &quot;V5339&quot; &quot;V5350&quot; &quot;V5351&quot; &quot;V5359&quot; &quot;V536&quot; </span></span>
+<span id="cb25-7"><a href="#cb25-7"></a><span class="co">#&gt; [37] &quot;V550&quot;  &quot;V551&quot;  &quot;V552&quot;  &quot;V553&quot;  &quot;V554&quot;  &quot;V555&quot;  &quot;V556&quot; </span></span>
+<span id="cb25-8"><a href="#cb25-8"></a><span class="co">#&gt; </span></span>
+<span id="cb25-9"><a href="#cb25-9"></a><span class="co">#&gt; $dx_fixed</span></span>
+<span id="cb25-10"><a href="#cb25-10"></a><span class="co">#&gt; character(0)</span></span>
+<span id="cb25-11"><a href="#cb25-11"></a><span class="co">#&gt; </span></span>
+<span id="cb25-12"><a href="#cb25-12"></a><span class="co">#&gt; $pc</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a><span class="co">#&gt;   [1] &quot;0221&quot; &quot;0222&quot; &quot;0231&quot; &quot;0232&quot; &quot;0233&quot; &quot;0234&quot; &quot;0235&quot; &quot;0239&quot; &quot;0241&quot; &quot;0242&quot;</span></span>
+<span id="cb25-14"><a href="#cb25-14"></a><span class="co">#&gt;  [11] &quot;0293&quot; &quot;0371&quot; &quot;0372&quot; &quot;0379&quot; &quot;0393&quot; &quot;0397&quot; &quot;0492&quot; &quot;0050&quot; &quot;0051&quot; &quot;0053&quot;</span></span>
+<span id="cb25-15"><a href="#cb25-15"></a><span class="co">#&gt;  [21] &quot;0054&quot; &quot;0055&quot; &quot;0057&quot; &quot;1751&quot; &quot;1752&quot; &quot;3741&quot; &quot;3752&quot; &quot;3753&quot; &quot;3754&quot; &quot;3755&quot;</span></span>
+<span id="cb25-16"><a href="#cb25-16"></a><span class="co">#&gt;  [31] &quot;3760&quot; &quot;3761&quot; &quot;3763&quot; &quot;3765&quot; &quot;3766&quot; &quot;3767&quot; &quot;3768&quot; &quot;3771&quot; &quot;3772&quot; &quot;3774&quot;</span></span>
+<span id="cb25-17"><a href="#cb25-17"></a><span class="co">#&gt;  [41] &quot;3776&quot; &quot;3779&quot; &quot;3780&quot; &quot;3781&quot; &quot;3782&quot; &quot;3783&quot; &quot;3785&quot; &quot;3786&quot; &quot;3787&quot; &quot;3789&quot;</span></span>
+<span id="cb25-18"><a href="#cb25-18"></a><span class="co">#&gt;  [51] &quot;3794&quot; &quot;3795&quot; &quot;3796&quot; &quot;3797&quot; &quot;3798&quot; &quot;3981&quot; &quot;3982&quot; &quot;3983&quot; &quot;3984&quot; &quot;3985&quot;</span></span>
+<span id="cb25-19"><a href="#cb25-19"></a><span class="co">#&gt;  [61] &quot;8945&quot; &quot;8946&quot; &quot;8947&quot; &quot;8948&quot; &quot;8949&quot; &quot;3121&quot; &quot;3129&quot; &quot;3141&quot; &quot;3174&quot; &quot;3321&quot;</span></span>
+<span id="cb25-20"><a href="#cb25-20"></a><span class="co">#&gt;  [71] &quot;3485&quot; &quot;9655&quot; &quot;9723&quot; &quot;3895&quot; &quot;3927&quot; &quot;3942&quot; &quot;3993&quot; &quot;3994&quot; &quot;3995&quot; &quot;5498&quot;</span></span>
+<span id="cb25-21"><a href="#cb25-21"></a><span class="co">#&gt;  [81] &quot;5502&quot; &quot;5503&quot; &quot;5504&quot; &quot;5512&quot; &quot;5593&quot; &quot;5594&quot; &quot;5597&quot; &quot;5651&quot; &quot;5652&quot; &quot;5661&quot;</span></span>
+<span id="cb25-22"><a href="#cb25-22"></a><span class="co">#&gt;  [91] &quot;5662&quot; &quot;5672&quot; &quot;5673&quot; &quot;5674&quot; &quot;5675&quot; &quot;5721&quot; &quot;5722&quot; &quot;5993&quot; &quot;5994&quot; &quot;8607&quot;</span></span>
+<span id="cb25-23"><a href="#cb25-23"></a><span class="co">#&gt; [101] &quot;9645&quot; &quot;9646&quot; &quot;9647&quot; &quot;4210&quot; &quot;4211&quot; &quot;4281&quot; &quot;4311&quot; &quot;4319&quot; &quot;4412&quot; &quot;4432&quot;</span></span>
+<span id="cb25-24"><a href="#cb25-24"></a><span class="co">#&gt; [111] &quot;4438&quot; &quot;4439&quot; &quot;4613&quot; &quot;4622&quot; &quot;4623&quot; &quot;4632&quot; &quot;4640&quot; &quot;4641&quot; &quot;4643&quot; &quot;9624&quot;</span></span>
+<span id="cb25-25"><a href="#cb25-25"></a><span class="co">#&gt; [121] &quot;9636&quot; &quot;9702&quot; &quot;8100&quot; &quot;8101&quot; &quot;8102&quot; &quot;8103&quot; &quot;8104&quot; &quot;8105&quot; &quot;8106&quot; &quot;8107&quot;</span></span>
+<span id="cb25-26"><a href="#cb25-26"></a><span class="co">#&gt; [131] &quot;8108&quot; &quot;8109&quot; &quot;8130&quot; &quot;8131&quot; &quot;8132&quot; &quot;8133&quot; &quot;8134&quot; &quot;8135&quot; &quot;8136&quot; &quot;8137&quot;</span></span>
+<span id="cb25-27"><a href="#cb25-27"></a><span class="co">#&gt; [141] &quot;8138&quot; &quot;8139&quot; &quot;8451&quot;</span></span>
+<span id="cb25-28"><a href="#cb25-28"></a><span class="co">#&gt; </span></span>
+<span id="cb25-29"><a href="#cb25-29"></a><span class="co">#&gt; $pc_fixed</span></span>
+<span id="cb25-30"><a href="#cb25-30"></a><span class="co">#&gt; character(0)</span></span></code></pre></div>
 </div>
 <div id="icd-10-cm-10" class="section level2">
 <h2>ICD-10-CM</h2>
@@ -1152,9 +1152,9 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-9-CM</h2>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">get_codes</span>(<span class="dv">9</span>)[<span class="st">&quot;transplant&quot;</span>, ]</span>
 <span id="cb27-2"><a href="#cb27-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="co">#&gt;  [1] &quot;99680&quot; &quot;99681&quot; &quot;99682&quot; &quot;99683&quot; &quot;99684&quot; &quot;99685&quot; &quot;99686&quot; &quot;99687&quot;</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="co">#&gt;  [9] &quot;99688&quot; &quot;99689&quot; &quot;V421&quot;  &quot;V422&quot;  &quot;V426&quot;  &quot;V427&quot;  &quot;V4281&quot; &quot;V4282&quot;</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a><span class="co">#&gt; [17] &quot;V4283&quot; &quot;V4284&quot; &quot;V432&quot;  &quot;V4585&quot; &quot;V5391&quot;</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="co">#&gt;  [1] &quot;99680&quot; &quot;99681&quot; &quot;99682&quot; &quot;99683&quot; &quot;99684&quot; &quot;99685&quot; &quot;99686&quot; &quot;99687&quot; &quot;99688&quot;</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a><span class="co">#&gt; [10] &quot;99689&quot; &quot;V421&quot;  &quot;V422&quot;  &quot;V426&quot;  &quot;V427&quot;  &quot;V4281&quot; &quot;V4282&quot; &quot;V4283&quot; &quot;V4284&quot;</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a><span class="co">#&gt; [19] &quot;V432&quot;  &quot;V4585&quot; &quot;V5391&quot;</span></span>
 <span id="cb27-6"><a href="#cb27-6"></a><span class="co">#&gt; </span></span>
 <span id="cb27-7"><a href="#cb27-7"></a><span class="co">#&gt; $dx_fixed</span></span>
 <span id="cb27-8"><a href="#cb27-8"></a><span class="co">#&gt; character(0)</span></span>
@@ -1171,10 +1171,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h2>ICD-10-CM</h2>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">get_codes</span>(<span class="dv">10</span>)[<span class="st">&quot;transplant&quot;</span>, ]</span>
 <span id="cb28-2"><a href="#cb28-2"></a><span class="co">#&gt; $dx</span></span>
-<span id="cb28-3"><a href="#cb28-3"></a><span class="co">#&gt;  [1] &quot;T8600&quot;  &quot;T8601&quot;  &quot;T8602&quot;  &quot;T8609&quot;  &quot;T8610&quot;  &quot;T8611&quot;  &quot;T8612&quot; </span></span>
-<span id="cb28-4"><a href="#cb28-4"></a><span class="co">#&gt;  [8] &quot;T8620&quot;  &quot;T8621&quot;  &quot;T8622&quot;  &quot;T86810&quot; &quot;T86811&quot; &quot;T86819&quot; &quot;T8640&quot; </span></span>
-<span id="cb28-5"><a href="#cb28-5"></a><span class="co">#&gt; [15] &quot;T8641&quot;  &quot;T8642&quot;  &quot;T86890&quot; &quot;T86891&quot; &quot;T86899&quot; &quot;T86850&quot; &quot;T86851&quot;</span></span>
-<span id="cb28-6"><a href="#cb28-6"></a><span class="co">#&gt; [22] &quot;T86859&quot; &quot;T865&quot;   &quot;T8690&quot;  &quot;T8691&quot;  &quot;T8692&quot;  &quot;T8699&quot; </span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="co">#&gt;  [1] &quot;T8600&quot;  &quot;T8601&quot;  &quot;T8602&quot;  &quot;T8609&quot;  &quot;T8610&quot;  &quot;T8611&quot;  &quot;T8612&quot;  &quot;T8620&quot; </span></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="co">#&gt;  [9] &quot;T8621&quot;  &quot;T8622&quot;  &quot;T86810&quot; &quot;T86811&quot; &quot;T86819&quot; &quot;T8640&quot;  &quot;T8641&quot;  &quot;T8642&quot; </span></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="co">#&gt; [17] &quot;T86890&quot; &quot;T86891&quot; &quot;T86899&quot; &quot;T86850&quot; &quot;T86851&quot; &quot;T86859&quot; &quot;T865&quot;   &quot;T8690&quot; </span></span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="co">#&gt; [25] &quot;T8691&quot;  &quot;T8692&quot;  &quot;T8699&quot; </span></span>
 <span id="cb28-7"><a href="#cb28-7"></a><span class="co">#&gt; </span></span>
 <span id="cb28-8"><a href="#cb28-8"></a><span class="co">#&gt; $dx_fixed</span></span>
 <span id="cb28-9"><a href="#cb28-9"></a><span class="co">#&gt; character(0)</span></span>

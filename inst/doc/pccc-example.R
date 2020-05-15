@@ -1,11 +1,11 @@
-## ---- include = FALSE----------------------------------------------------
+## ---- include = FALSE---------------------------------------------------------
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 
-## ---- message = FALSE----------------------------------------------------
+## ---- message = FALSE---------------------------------------------------------
 library(pccc)
 library(dplyr)
 
-## ---- eval = FALSE-------------------------------------------------------
+## ---- eval = FALSE------------------------------------------------------------
 #  # download and unzip file from ftp://ftp.cdc.gov/pub/health_statistics/nchs/datasets/comparability/icd9_icd10/ICD9_ICD10_comparability_public_use_ASCII.ZIP
 #  # columns of interest
 #  # start end     width description
@@ -38,12 +38,12 @@ library(dplyr)
 #  mcod <- dplyr::mutate(mcod, id = seq_along(age))
 #  mcod <- mcod[c("id", "icd9", "icd10")]
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 # Show data
 head(pccc::comparability, 10)
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 # Run PCCC on ICD-9-CM codes
 
 ccc_result_icd9 <-
@@ -64,7 +64,7 @@ dplyr::summarize_at(ccc_result_icd9, vars(-id), mean) %>% print.data.frame
 
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 # Run PCCC on ICD-10-CM codes
 
 ccc_result_icd10 <-

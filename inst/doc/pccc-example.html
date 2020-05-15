@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="James Feinstein" />
 <meta name="author" content="Seth Russell" />
 <meta name="author" content="Tell Bennett" />
 
-<meta name="date" content="2019-08-21" />
+<meta name="date" content="2020-05-15" />
 
 <title>PCCC: An Example Using the Center for Disease Control’s Multiple Cause of Death Dataset</title>
 
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -55,7 +66,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -122,9 +133,6 @@ padding-right: 2em;
 font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 14px;
 line-height: 1.35;
-}
-#header {
-text-align: center;
 }
 #TOC {
 clear: both;
@@ -293,7 +301,8 @@ code > span.st { color: #d14; }
 code > span.co { color: #888888; font-style: italic; } 
 code > span.ot { color: #007020; } 
 code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
 
@@ -310,7 +319,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h4 class="author">James Feinstein</h4>
 <h4 class="author">Seth Russell</h4>
 <h4 class="author">Tell Bennett</h4>
-<h4 class="date">2019-08-21</h4>
+<h4 class="date">2020-05-15</h4>
 
 
 
@@ -390,36 +399,36 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <span id="cb4-9"><a href="#cb4-9"></a></span>
 <span id="cb4-10"><a href="#cb4-10"></a><span class="co"># review results</span></span>
 <span id="cb4-11"><a href="#cb4-11"></a><span class="kw">head</span>(ccc_result_icd9)</span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt;   id neuromusc cvd respiratory renal gi hemato_immu metabolic</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#&gt; 1  1         0   0           0     0  0           0         0</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt; 2  2         1   0           0     0  0           0         0</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="co">#&gt; 3  3         0   0           0     0  0           0         0</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="co">#&gt; 4  4         0   0           0     0  0           0         0</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="co">#&gt; 5  5         0   0           0     0  0           0         0</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="co">#&gt; 6  6         0   0           0     0  0           0         0</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="co">#&gt;   congeni_genetic malignancy neonatal tech_dep transplant ccc_flag</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="co">#&gt; 1               0          0        0        0          0        0</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="co">#&gt; 2               0          0        0        0          0        1</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="co">#&gt; 3               0          0        0        0          0        0</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a><span class="co">#&gt; 4               0          0        0        0          0        0</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="co">#&gt; 5               0          0        0        0          0        0</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a><span class="co">#&gt; 6               0          0        0        0          0        0</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">#&gt;   id neuromusc cvd respiratory renal gi hemato_immu metabolic congeni_genetic</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">#&gt; 1  1         0   0           0     0  0           0         0               0</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt; 2  2         1   0           0     0  0           0         0               0</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="co">#&gt; 3  3         0   0           0     0  0           0         0               0</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="co">#&gt; 4  4         0   0           0     0  0           0         0               0</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co">#&gt; 5  5         0   0           0     0  0           0         0               0</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="co">#&gt; 6  6         0   0           0     0  0           0         0               0</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="co">#&gt;   malignancy neonatal tech_dep transplant ccc_flag</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="co">#&gt; 1          0        0        0          0        0</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a><span class="co">#&gt; 2          0        0        0          0        1</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a><span class="co">#&gt; 3          0        0        0          0        0</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a><span class="co">#&gt; 4          0        0        0          0        0</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="co">#&gt; 5          0        0        0          0        0</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a><span class="co">#&gt; 6          0        0        0          0        0</span></span>
 <span id="cb4-26"><a href="#cb4-26"></a></span>
 <span id="cb4-27"><a href="#cb4-27"></a><span class="co"># view number of patients with each CCC</span></span>
 <span id="cb4-28"><a href="#cb4-28"></a>sum_results &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarize_at</span>(ccc_result_icd9, <span class="kw">vars</span>(<span class="op">-</span>id), sum) <span class="op">%&gt;%</span><span class="st"> </span>print.data.frame</span>
-<span id="cb4-29"><a href="#cb4-29"></a><span class="co">#&gt;   neuromusc  cvd respiratory renal  gi hemato_immu metabolic</span></span>
-<span id="cb4-30"><a href="#cb4-30"></a><span class="co">#&gt; 1      2559 3341        1651   366 189         794       294</span></span>
-<span id="cb4-31"><a href="#cb4-31"></a><span class="co">#&gt;   congeni_genetic malignancy neonatal tech_dep transplant ccc_flag</span></span>
-<span id="cb4-32"><a href="#cb4-32"></a><span class="co">#&gt; 1            2146       2848     1202        6          0    15390</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a><span class="co">#&gt;   neuromusc  cvd respiratory renal  gi hemato_immu metabolic congeni_genetic</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a><span class="co">#&gt; 1      2559 3341        1651   366 189         794       294            2146</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a><span class="co">#&gt;   malignancy neonatal tech_dep transplant ccc_flag</span></span>
+<span id="cb4-32"><a href="#cb4-32"></a><span class="co">#&gt; 1       2848     1202        6          0    15390</span></span>
 <span id="cb4-33"><a href="#cb4-33"></a></span>
 <span id="cb4-34"><a href="#cb4-34"></a><span class="co"># view percent of total population with each CCC</span></span>
 <span id="cb4-35"><a href="#cb4-35"></a>dplyr<span class="op">::</span><span class="kw">summarize_at</span>(ccc_result_icd9, <span class="kw">vars</span>(<span class="op">-</span>id), mean) <span class="op">%&gt;%</span><span class="st"> </span>print.data.frame</span>
 <span id="cb4-36"><a href="#cb4-36"></a><span class="co">#&gt;    neuromusc        cvd respiratory       renal          gi hemato_immu</span></span>
 <span id="cb4-37"><a href="#cb4-37"></a><span class="co">#&gt; 1 0.03934683 0.05137076  0.02538555 0.005627566 0.002906038  0.01220844</span></span>
-<span id="cb4-38"><a href="#cb4-38"></a><span class="co">#&gt;     metabolic congeni_genetic malignancy   neonatal     tech_dep</span></span>
-<span id="cb4-39"><a href="#cb4-39"></a><span class="co">#&gt; 1 0.004520504       0.0329966 0.04379046 0.01848179 9.225518e-05</span></span>
-<span id="cb4-40"><a href="#cb4-40"></a><span class="co">#&gt;   transplant  ccc_flag</span></span>
-<span id="cb4-41"><a href="#cb4-41"></a><span class="co">#&gt; 1          0 0.2366345</span></span></code></pre></div>
+<span id="cb4-38"><a href="#cb4-38"></a><span class="co">#&gt;     metabolic congeni_genetic malignancy   neonatal     tech_dep transplant</span></span>
+<span id="cb4-39"><a href="#cb4-39"></a><span class="co">#&gt; 1 0.004520504       0.0329966 0.04379046 0.01848179 9.225518e-05          0</span></span>
+<span id="cb4-40"><a href="#cb4-40"></a><span class="co">#&gt;    ccc_flag</span></span>
+<span id="cb4-41"><a href="#cb4-41"></a><span class="co">#&gt; 1 0.2366345</span></span></code></pre></div>
 <p>To run the PCCC classification on the ICD-10-CM codes:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Run PCCC on ICD-10-CM codes</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a></span>
@@ -432,27 +441,27 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <span id="cb5-9"><a href="#cb5-9"></a></span>
 <span id="cb5-10"><a href="#cb5-10"></a><span class="co"># review results</span></span>
 <span id="cb5-11"><a href="#cb5-11"></a><span class="kw">head</span>(ccc_result_icd10)</span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt;   id neuromusc cvd respiratory renal gi hemato_immu metabolic</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; 1  1         0   0           0     0  0           0         0</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; 2  2         1   0           0     0  0           0         0</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; 3  3         0   0           0     0  0           0         0</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; 4  4         0   0           0     0  0           0         0</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; 5  5         0   0           0     0  0           0         0</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt; 6  6         0   0           0     0  0           0         0</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co">#&gt;   congeni_genetic malignancy neonatal tech_dep transplant ccc_flag</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="co">#&gt; 1               0          0        0        0          0        0</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a><span class="co">#&gt; 2               0          0        0        0          0        1</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="co">#&gt; 3               0          0        0        0          0        0</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="co">#&gt; 4               0          0        0        0          0        0</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="co">#&gt; 5               0          0        0        0          0        0</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a><span class="co">#&gt; 6               0          0        0        0          0        0</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt;   id neuromusc cvd respiratory renal gi hemato_immu metabolic congeni_genetic</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; 1  1         0   0           0     0  0           0         0               0</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; 2  2         1   0           0     0  0           0         0               0</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; 3  3         0   0           0     0  0           0         0               0</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; 4  4         0   0           0     0  0           0         0               0</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; 5  5         0   0           0     0  0           0         0               0</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt; 6  6         0   0           0     0  0           0         0               0</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="co">#&gt;   malignancy neonatal tech_dep transplant ccc_flag</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="co">#&gt; 1          0        0        0          0        0</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="co">#&gt; 2          0        0        0          0        1</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="co">#&gt; 3          0        0        0          0        0</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="co">#&gt; 4          0        0        0          0        0</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a><span class="co">#&gt; 5          0        0        0          0        0</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a><span class="co">#&gt; 6          0        0        0          0        0</span></span>
 <span id="cb5-26"><a href="#cb5-26"></a></span>
 <span id="cb5-27"><a href="#cb5-27"></a><span class="co"># view number of patients with each CCC</span></span>
 <span id="cb5-28"><a href="#cb5-28"></a>sum_results &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarize_at</span>(ccc_result_icd10, <span class="kw">vars</span>(<span class="op">-</span>id), sum) <span class="op">%&gt;%</span><span class="st"> </span>print.data.frame</span>
-<span id="cb5-29"><a href="#cb5-29"></a><span class="co">#&gt;   neuromusc  cvd respiratory renal  gi hemato_immu metabolic</span></span>
-<span id="cb5-30"><a href="#cb5-30"></a><span class="co">#&gt; 1      1990 3500        1385   377 185         794       277</span></span>
-<span id="cb5-31"><a href="#cb5-31"></a><span class="co">#&gt;   congeni_genetic malignancy neonatal tech_dep transplant ccc_flag</span></span>
-<span id="cb5-32"><a href="#cb5-32"></a><span class="co">#&gt; 1            1979       2949     1421        6          0    14863</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a><span class="co">#&gt;   neuromusc  cvd respiratory renal  gi hemato_immu metabolic congeni_genetic</span></span>
+<span id="cb5-30"><a href="#cb5-30"></a><span class="co">#&gt; 1      1990 3500        1385   377 185         794       277            1979</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a><span class="co">#&gt;   malignancy neonatal tech_dep transplant ccc_flag</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a><span class="co">#&gt; 1       2949     1421        6          0    14863</span></span>
 <span id="cb5-33"><a href="#cb5-33"></a></span>
 <span id="cb5-34"><a href="#cb5-34"></a><span class="co"># view percent of total population with each CCC</span></span>
 <span id="cb5-35"><a href="#cb5-35"></a>dplyr<span class="op">::</span><span class="kw">summarize_at</span>(ccc_result_icd10, <span class="kw">vars</span>(<span class="op">-</span>id), mean) <span class="op">%&gt;%</span><span class="st"> </span>print.data.frame</span>
