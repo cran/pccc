@@ -1,6 +1,6 @@
 Package: pccc
 Title: Pediatric Complex Chronic Conditions
-Version: 1.0.4
+Version: 1.0.5
 Authors@R: c(
     person("Peter", "DeWitt", , "dewittpe@gmail.com", role = c("aut")),
     person("Tell",  "Bennett", , "tell.bennett@ucdenver.edu", role = c("aut")),
@@ -9,7 +9,7 @@ Authors@R: c(
     )
 Description: An implementation of the pediatric complex chronic conditions (CCC)
     classification system using R and C++.
-Depends: R (>= 3.0.2)
+Depends: R (>= 3.5.0)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
@@ -21,11 +21,11 @@ VignetteBuilder: knitr
 URL: https://github.com/CUD2V/pccc
 BugReports: https://github.com/CUD2V/pccc/issues
 NeedsCompilation: yes
-Packaged: 2020-05-15 16:24:03 UTC; seth
+Packaged: 2020-06-01 21:50:35 UTC; seth
 Author: Peter DeWitt [aut],
   Tell Bennett [aut],
   James Feinstein [aut],
   Seth Russell [aut, cre]
 Maintainer: Seth Russell <seth.russell@ucdenver.edu>
 Repository: CRAN
-Date/Publication: 2020-05-15 16:50:02 UTC
+Date/Publication: 2020-06-02 06:30:02 UTC
