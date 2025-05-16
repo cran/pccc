@@ -15,15 +15,15 @@
 #' For ease, a copy of the paper is included in this package.  See the examples
 #' below for instructions on opening this pdf from within R or outside of R.
 #' You can view the publication online at
-#' \url{http://bmcpediatr.biomedcentral.com/articles/10.1186/1471-2431-14-199}.
+#' \doi{10.1186/1471-2431-14-199}.
 #'
 #' Feudtner et. al. provided a SAS macro and STATA program to implement the CCC.
 #' These files are also provided for reference.  See the Examples for
 #' instructions on opening these files.
 #'
 #' Lastly, the appendix tables in the file
-#' Categories_of_CCCv2_and_Corresponding_ICD.docx have also been included with
-#' this package.
+#' \code{system.file("pccc_references", "Categories_of_CCCv2_and_Corresponding_ICD.docx", package = "pccc")}
+#' have also been included with this package.
 #'
 #' @examples
 #' \dontrun{
@@ -45,16 +45,16 @@
 #' file.show(system.file("pccc_references", "ccc.do", package = "pccc"))
 #' }
 #'
-#' @docType package
-#' @name pccc-package
+#' @keywords internal
+"_PACKAGE"
+
+## usethis namespace: start
 #' @useDynLib pccc
 #' @importFrom Rcpp sourceCpp
 #' @importFrom dplyr as.tbl
+#' @importFrom tibble as_tibble
+## usethis namespace: end
 NULL
-
-#' @importFrom dplyr "%>%"
-# Define globalVariables so R CMD check doesn't freak out
-utils::globalVariables(".")
 
 .onUnload <- function(libpath) {
   library.dynam.unload("pccc", libpath)

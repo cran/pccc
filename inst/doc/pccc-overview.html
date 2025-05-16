@@ -15,7 +15,7 @@
 <meta name="author" content="James Feinstein" />
 <meta name="author" content="Tell Bennett" />
 
-<meta name="date" content="2020-06-01" />
+<meta name="date" content="2025-05-15" />
 
 <title>Pediatric Complex Chronic Conditions</title>
 
@@ -33,12 +33,30 @@ document.addEventListener('DOMContentLoaded', function(e) {
 });
 </script>
 
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
-<style type="text/css">code{white-space: pre;}</style>
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -47,58 +65,57 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
-  { counter-reset: source-line 0; }
+{ counter-reset: source-line 0; }
 pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {   }
+{ }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -107,13 +124,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -121,6 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
+
 
 
 
@@ -321,23 +346,40 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h4 class="author">Seth Russell</h4>
 <h4 class="author">James Feinstein</h4>
 <h4 class="author">Tell Bennett</h4>
-<h4 class="date">2020-06-01</h4>
+<h4 class="date">2025-05-15</h4>
 
 
 
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>This vignette describes how the <code>pccc</code> package generates the Complex Chronic Condition Categories (CCC) from ICD-9 and ICD-10 codes.</p>
-<p>A CCC is “any medical condition that can be reasonably expected to last at least 12 months (unless death intervenes) and to involve either several different organ systems or 1 organ system severely enough to require specialty pediatric care and probably some period of hospitalization in a tertiary care center.” The categorization is based on the work of Feudtner et al. (2000 &amp; 2014), as referenced below.</p>
-<p>A supplemental reference document showing the lists of codes for each category was published as a supplement to Feudtner et al. (2014) and we have made it available as part of the <code>pccc</code> package. After installing the package, you can find the file on your system with the below <code>system.file</code> call. Open the file with your preferred/available program for <code>.docx</code> files (Word, etc.).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">system.file</span>(<span class="st">&quot;pccc_references/Categories_of_CCCv2_and_Corresponding_ICD.docx&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;pccc&quot;</span>)</span></code></pre></div>
-<p>To evaluate the code chunks in this example you will need to load the following R packages.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(pccc)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
+<p>This vignette describes how the <code>pccc</code> package generates
+the Complex Chronic Condition Categories (CCC) from ICD-9 and ICD-10
+codes.</p>
+<p>A CCC is “any medical condition that can be reasonably expected to
+last at least 12 months (unless death intervenes) and to involve either
+several different organ systems or 1 organ system severely enough to
+require specialty pediatric care and probably some period of
+hospitalization in a tertiary care center.” The categorization is based
+on the work of Feudtner et al. (2000 &amp; 2014), as referenced
+below.</p>
+<p>A supplemental reference document showing the lists of codes for each
+category was published as a supplement to Feudtner et al. (2014) and we
+have made it available as part of the <code>pccc</code> package. After
+installing the package, you can find the file on your system with the
+below <code>system.file</code> call. Open the file with your
+preferred/available program for <code>.docx</code> files (Word,
+etc.).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">system.file</span>(<span class="st">&quot;pccc_references/Categories_of_CCCv2_and_Corresponding_ICD.docx&quot;</span>, <span class="at">package =</span> <span class="st">&quot;pccc&quot;</span>)</span></code></pre></div>
+<p>To evaluate the code chunks in this example you will need to load the
+following R packages.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(pccc)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
 </div>
 <div id="logic-employed" class="section level1">
 <h1>Logic employed</h1>
-<p>There are 12 total categories of CCCs used in this package. The first group of 10 are mutually exclusive - only one of them can be derived from a single ICD code:</p>
+<p>There are 12 total categories of CCCs used in this package. The first
+group of 10 are mutually exclusive - only one of them can be derived
+from a single ICD code:</p>
 <ul>
 <li>Neurologic and Neuromuscular</li>
 <li>Cardiovascular</li>
@@ -350,7 +392,9 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <li>Malignancy</li>
 <li>Premature and Neonatal</li>
 </ul>
-<p>The last 2 can be be selected in addition to the above codes - for example, one ICD code could generate CCC categorization as both Gastrointestinal and Technology Dependency:</p>
+<p>The last 2 can be be selected in addition to the above codes - for
+example, one ICD code could generate CCC categorization as both
+Gastrointestinal and Technology Dependency:</p>
 <ul>
 <li>Technology Dependency</li>
 <li>Transplant</li>
@@ -359,122 +403,190 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="generating-ccc-categories-from-icd-codes" class="section level1">
 <h1>Generating CCC categories from ICD codes</h1>
-<p>The <code>ccc</code> function is the workhorse here. Simply put, a user will provide ICD codes as strings and <code>ccc</code> will return CCC categories. CCC codes for ICD-9-CM are matched on substrings and ICD 10 codes are matched on full codes, but the <code>ccc</code> function uses the same “starts with substring” matching logic for both, except in a few cases described in the next paragraph.</p>
+<p>The <code>ccc</code> function is the workhorse here. Simply put, a
+user will provide ICD codes as strings and <code>ccc</code> will return
+CCC categories. CCC codes for ICD-9-CM are matched on substrings and ICD
+10 codes are matched on full codes, but the <code>ccc</code> function
+uses the same “starts with substring” matching logic for both, except in
+a few cases described in the next paragraph.</p>
 <div id="substring-matching-exceptions" class="section level2">
 <h2>Substring matching exceptions</h2>
-<p>Some datasets may contain different degrees of specificity of ICD-9-CM codes, which can lead to issues with substring matching for certain codes. For example, consider a patient with <em>Congenital hereditary muscular dystrophy</em>. The least specific ICD-9-CM code for <em>Muscular dystropy</em> is 359, which is a CCC code. The exact ICD-9-CM code specifying <em>Congenital hereditary muscular dystrophy</em> is 3590. Even when describing the same patient, one dataset may contain the 359 code while another dataset may contain the 3590 code. If we use substring matching logic above and match on 359, we would capture the patient in both datasets. However, we would also capture non-CCC diagnoses like 3594, <em>Toxic myopathy</em>. If we use substring matching logic and match on 3590, we would only capture the patient in the dataset with more specific ICD-9-CM codes. We address this problem by exact matching for less specific codes (e.g., the code 359 will match only if the dataset contains the 3-digit code 359) and substring matching for more specific codes (e.g., code 3590 will match any code <em>beginning with</em> 3590). This approach improves the sensitivity of detecting CCCs in datasets with less specific codes (e.g. 359) and also reduces misclassification errors in datasets with more specific codes (e.g. 3590).</p>
-<p><strong>We have listed these exact match exceptions under their corresponding CCC category in the <a href="pccc-icd-codes.html">pccc-icd-codes</a> description.</strong></p>
+<p>Some datasets may contain different degrees of specificity of
+ICD-9-CM codes, which can lead to issues with substring matching for
+certain codes. For example, consider a patient with <em>Congenital
+hereditary muscular dystrophy</em>. The least specific ICD-9-CM code for
+<em>Muscular dystrophy</em> is 359, which is a CCC code. The exact
+ICD-9-CM code specifying <em>Congenital hereditary muscular
+dystrophy</em> is 3590. Even when describing the same patient, one
+dataset may contain the 359 code while another dataset may contain the
+3590 code. If we use substring matching logic above and match on 359, we
+would capture the patient in both datasets. However, we would also
+capture non-CCC diagnoses like 3594, <em>Toxic myopathy</em>. If we use
+substring matching logic and match on 3590, we would only capture the
+patient in the dataset with more specific ICD-9-CM codes. We address
+this problem by exact matching for less specific codes (e.g., the code
+359 will match only if the dataset contains the 3-digit code 359) and
+substring matching for more specific codes (e.g., code 3590 will match
+any code <em>beginning with</em> 3590). This approach improves the
+sensitivity of detecting CCCs in datasets with less specific codes
+(e.g. 359) and also reduces misclassification errors in datasets with
+more specific codes (e.g. 3590).</p>
+<p><strong>We have listed these exact match exceptions under their
+corresponding CCC category in the <a href="pccc-icd-codes.html">pccc-icd-codes</a> description.</strong></p>
 </div>
 </div>
 <div id="preparing-icd-9-cm-and-icd-10-cm-codes-for-analysis-using-the-pccc-package" class="section level1">
-<h1>Preparing ICD-9-CM and ICD-10-CM codes for analysis using the PCCC package</h1>
-<p><strong>Users of the <code>pccc</code> package will need to pre-process the ICD-9 and ICD-10 codes in their data so that the strings are formatted in the way that the <code>pccc</code> package will recognize them.</strong></p>
+<h1>Preparing ICD-9-CM and ICD-10-CM codes for analysis using the PCCC
+package</h1>
+<p><strong>Users of the <code>pccc</code> package will need to
+pre-process the ICD-9 and ICD-10 codes in their data so that the strings
+are formatted in the way that the <code>pccc</code> package will
+recognize them.</strong></p>
 <p>Specific rules to format ICD Codes correctly:</p>
 <ul>
-<li>Codes should be alphanumeric only (e.g. <em>Diabetes with renal manifestations, type II or unspecified type, uncontrolled</em> should be sent as 25042)</li>
-<li>Codes should NOT contain periods, spaces or other separator characters periods (e.g. ICD-9-CM 04.92 will only be matched by the string “0492”)</li>
+<li>Codes should be alphanumeric only (e.g. <em>Diabetes with renal
+manifestations, type II or unspecified type, uncontrolled</em> should be
+sent as 25042)</li>
+<li>Codes should NOT contain periods, spaces or other separator
+characters periods (e.g. ICD-9-CM 04.92 will only be matched by the
+string “0492”)</li>
 <li>ICD-9-CM codes should be at a minimum 3 digits long:
 <ul>
-<li>Codes less than 10 should be left padded with 2 zeros. E.g. <em>Cholera due to vibrio cholerae el tor</em>, ICD-9-CM 001.1, should be sent as 0011)</li>
-<li>Codes less than 100 should be left padded with 1 zero. E.g. <em>Whooping cough, unspecified organism</em>, ICD-9-CM 033.9, should be sent as 0339)</li>
+<li>Codes less than 10 should be left padded with 2 zeros. E.g.
+<em>Cholera due to vibrio cholerae el tor</em>, ICD-9-CM 001.1, should
+be sent as 0011)</li>
+<li>Codes less than 100 should be left padded with 1 zero. E.g.
+<em>Whooping cough, unspecified organism</em>, ICD-9-CM 033.9, should be
+sent as 0339)</li>
 </ul></li>
 </ul>
 <p>Potential issues with improperly formatted ICD codes:</p>
 <ul>
-<li>All codes in all categories employ “starts with substring” matching logic. Because of this, if a code to be evaluated starts with a code listed in one of the CCC categories, a match will be found. As an example, if a record with an ICD-9-CM procedure code of “0492,25042” is passed due to failure to properly parse an input file, PCCC would indicate a match for the Neuromuscular CCC since one of the Neuromuscular CCC procedure substrings is 0492.</li>
-<li>CCCs are matched in the order of the CCCs shown in the “Logic employed” section. Once a match is found, other categories are not evaluated with the exception of Technology Dependency and Transplant CCCs.</li>
-<li>If there are changes in either ICD-9-CM or ICD-10-CM, this library may require updating to continue functioning correctly.</li>
+<li>All codes in all categories employ “starts with substring” matching
+logic. Because of this, if a code to be evaluated starts with a code
+listed in one of the CCC categories, a match will be found. As an
+example, if a record with an ICD-9-CM procedure code of “0492,25042” is
+passed due to failure to properly parse an input file, PCCC would
+indicate a match for the Neuromuscular CCC since one of the
+Neuromuscular CCC procedure substrings is 0492.</li>
+<li>CCCs are matched in the order of the CCCs shown in the “Logic
+employed” section. Once a match is found, other categories are not
+evaluated with the exception of Technology Dependency and Transplant
+CCCs.</li>
+<li>If there are changes in either ICD-9-CM or ICD-10-CM, this library
+may require updating to continue functioning correctly.</li>
 </ul>
 <p>Users of PCCC may find the R Package <a href="https://jackwasey.github.io/icd/">ICD</a> useful.</p>
 </div>
 <div id="pccc-examples" class="section level1">
 <h1>PCCC Examples</h1>
-<p>To illustrate the how the input formatting impacts the identification of a CCC, consider the data <code>data.frame</code> named <code>dat</code> below. These data have information about three patients (A-C). Each subject has the same ICD-9-CM diagnosis code (e.g. <em>Hypertrophic obstructive cardiomyopathy</em>, ICD-9-CM 425.11, which should be sent as 4251) and the same ICD-9-CM procedure code (e.g. <em>Heart transplantation</em>, ICD-9-CM 37.51, which should be sent as 3751), but each input is formatted differently. Based on the ICD-9-CM diagnosis code, the <code>ccc</code> function will only identify subject <code>A</code> as having a CCC. Based on the ICD-9-CM procedure code, the <code>ccc</code> function will only identify subject <code>B</code> as having a CCC and will also flag the Transplantation category.</p>
+<p>To illustrate the how the input formatting impacts the identification
+of a CCC, consider the data <code>data.frame</code> named
+<code>dat</code> below. These data have information about three patients
+(A-C). Each subject has the same ICD-9-CM diagnosis code
+(e.g. <em>Hypertrophic obstructive cardiomyopathy</em>, ICD-9-CM 425.11,
+which should be sent as 4251) and the same ICD-9-CM procedure code
+(e.g. <em>Heart transplantation</em>, ICD-9-CM 37.51, which should be
+sent as 3751), but each input is formatted differently. Based on the
+ICD-9-CM diagnosis code, the <code>ccc</code> function will only
+identify subject <code>A</code> as having a CCC. Based on the ICD-9-CM
+procedure code, the <code>ccc</code> function will only identify subject
+<code>B</code> as having a CCC and will also flag the Transplantation
+category.</p>
 <div id="basic-example" class="section level2">
 <h2>Basic Example</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">ids =</span> <span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), </span>
-<span id="cb3-2"><a href="#cb3-2"></a>                  <span class="dt">dxs =</span> <span class="kw">c</span>(<span class="st">&quot;4251&quot;</span>, <span class="st">&quot;425.1&quot;</span>, <span class="st">&quot;425.1&quot;</span>), </span>
-<span id="cb3-3"><a href="#cb3-3"></a>                  <span class="dt">procs =</span> <span class="kw">c</span>(<span class="st">&quot;37.51&quot;</span>, <span class="st">&quot;3751&quot;</span>, <span class="st">&quot;37.51&quot;</span>))</span>
-<span id="cb3-4"><a href="#cb3-4"></a>dat</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt;   ids   dxs procs</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; 1   A  4251 37.51</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; 2   B 425.1  3751</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; 3   C 425.1 37.51</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">ccc</span>(dat, </span>
-<span id="cb3-10"><a href="#cb3-10"></a>    <span class="dt">id =</span> ids, </span>
-<span id="cb3-11"><a href="#cb3-11"></a>    <span class="dt">dx_cols =</span> dxs, </span>
-<span id="cb3-12"><a href="#cb3-12"></a>    <span class="dt">pc_cols =</span> procs, </span>
-<span id="cb3-13"><a href="#cb3-13"></a>    <span class="dt">icdv =</span> <span class="dv">9</span>)</span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt;   ids neuromusc cvd respiratory renal gi hemato_immu metabolic congeni_genetic</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; 1   A         0   1           0     0  0           0         0               0</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; 2   B         0   1           0     0  0           0         0               0</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; 3   C         0   0           0     0  0           0         0               0</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt;   malignancy neonatal tech_dep transplant ccc_flag</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; 1          0        0        0          0        1</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; 2          0        0        0          1        1</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; 3          0        0        0          0        0</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ids =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), </span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>                  <span class="at">dxs =</span> <span class="fu">c</span>(<span class="st">&quot;4251&quot;</span>, <span class="st">&quot;425.1&quot;</span>, <span class="st">&quot;425.1&quot;</span>), </span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                  <span class="at">procs =</span> <span class="fu">c</span>(<span class="st">&quot;37.51&quot;</span>, <span class="st">&quot;3751&quot;</span>, <span class="st">&quot;37.51&quot;</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>dat</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt;   ids   dxs procs</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt; 1   A  4251 37.51</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt; 2   B 425.1  3751</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt; 3   C 425.1 37.51</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">ccc</span>(dat, </span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>    <span class="at">id =</span> ids, </span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>    <span class="at">dx_cols =</span> dxs, </span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>    <span class="at">pc_cols =</span> procs, </span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>    <span class="at">icdv =</span> <span class="dv">9</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co">#&gt;   ids neuromusc cvd respiratory renal gi hemato_immu metabolic congeni_genetic</span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#&gt; 1   A         0   1           0     0  0           0         0               0</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt; 2   B         0   1           0     0  0           0         0               0</span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#&gt; 3   C         0   0           0     0  0           0         0               0</span></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co">#&gt;   malignancy neonatal tech_dep transplant ccc_flag</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a><span class="co">#&gt; 1          0        0        0          0        1</span></span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a><span class="co">#&gt; 2          0        0        0          1        1</span></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co">#&gt; 3          0        0        0          0        0</span></span></code></pre></div>
 </div>
 <div id="extended-example" class="section level2">
 <h2>Extended Example</h2>
-<p>This example used a tool developed by Seth Russell (available at <a href="https://github.com/magic-lantern/icd_file_generator">icd_file_generator</a>) to create a sample data file for ICD-9-CM and ICD-10-CM. The generated data files contain randomly generated ICD codes for 1,000 patients and is comprised of 10 columns of diagnosis codes (d_cols), 10 columns of procedure codes (p_cols), and 10 columns of other data (g_cols).</p>
+<p>This example used a tool developed by Seth Russell (available at <a href="https://github.com/magic-lantern/icd_file_generator">icd_file_generator</a>)
+to create a sample data file for ICD-9-CM and ICD-10-CM. The generated
+data files contain randomly generated ICD codes for 1,000 patients and
+is comprised of 10 columns of diagnosis codes (d_cols), 10 columns of
+procedure codes (p_cols), and 10 columns of other data (g_cols).</p>
 <p>Sample of how ICD-9-CM test file was generated:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>pccc_icd9_dataset &lt;-<span class="st"> </span><span class="kw">generate_sample</span>(</span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="dt">v =</span> <span class="dv">9</span>,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="dt">n_rows =</span> <span class="dv">10000</span>,</span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="dt">d_cols =</span> <span class="dv">10</span>,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="dt">p_cols =</span> <span class="dv">10</span>,</span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="dt">g_cols =</span> <span class="dv">10</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>)</span>
-<span id="cb4-8"><a href="#cb4-8"></a></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="kw">save</span>(pccc_icd9_dataset, <span class="dt">file=</span><span class="st">&quot;pccc_icd9_dataset.rda&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>pccc_icd9_dataset <span class="ot">&lt;-</span> <span class="fu">generate_sample</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="at">v =</span> <span class="dv">9</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="at">n_rows =</span> <span class="dv">10000</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="at">d_cols =</span> <span class="dv">10</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  <span class="at">p_cols =</span> <span class="dv">10</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>  <span class="at">g_cols =</span> <span class="dv">10</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>)</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="fu">save</span>(pccc_icd9_dataset, <span class="at">file=</span><span class="st">&quot;pccc_icd9_dataset.rda&quot;</span>)</span></code></pre></div>
 <p>Example using sample patient data set:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="kw">library</span>(pccc)</span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a>ccc_result &lt;-</span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="st">    </span><span class="kw">ccc</span>(pccc<span class="op">::</span>pccc_icd9_dataset[, <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">21</span>)], <span class="co"># get id, dx, and pc columns</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>        <span class="dt">id      =</span> id,</span>
-<span id="cb5-7"><a href="#cb5-7"></a>        <span class="dt">dx_cols =</span> dplyr<span class="op">::</span><span class="kw">starts_with</span>(<span class="st">&quot;dx&quot;</span>),</span>
-<span id="cb5-8"><a href="#cb5-8"></a>        <span class="dt">pc_cols =</span> dplyr<span class="op">::</span><span class="kw">starts_with</span>(<span class="st">&quot;pc&quot;</span>),</span>
-<span id="cb5-9"><a href="#cb5-9"></a>        <span class="dt">icdv    =</span> <span class="dv">09</span>)</span>
-<span id="cb5-10"><a href="#cb5-10"></a></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co"># review results</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="kw">head</span>(ccc_result)</span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt;   id neuromusc cvd respiratory renal gi hemato_immu metabolic congeni_genetic</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; 1  1         0   0           0     0  1           0         0               0</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; 2  2         0   0           0     0  0           0         0               0</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; 3  3         1   0           0     0  1           0         0               0</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; 4  4         0   0           0     0  0           0         0               0</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="co">#&gt; 5  5         0   0           0     0  0           0         0               0</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co">#&gt; 6  6         0   1           0     0  0           0         0               0</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="co">#&gt;   malignancy neonatal tech_dep transplant ccc_flag</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a><span class="co">#&gt; 1          0        0        0          0        1</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="co">#&gt; 2          0        0        0          0        0</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="co">#&gt; 3          0        0        1          0        1</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="co">#&gt; 4          0        0        0          0        0</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a><span class="co">#&gt; 5          0        0        0          0        0</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a><span class="co">#&gt; 6          0        1        1          0        1</span></span>
-<span id="cb5-27"><a href="#cb5-27"></a></span>
-<span id="cb5-28"><a href="#cb5-28"></a><span class="co"># view number of patients with each CCC</span></span>
-<span id="cb5-29"><a href="#cb5-29"></a>sum_results &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarize_at</span>(ccc_result, <span class="kw">vars</span>(<span class="op">-</span>id), sum) <span class="op">%&gt;%</span><span class="st"> </span>print.data.frame</span>
-<span id="cb5-30"><a href="#cb5-30"></a><span class="co">#&gt;   neuromusc cvd respiratory renal  gi hemato_immu metabolic congeni_genetic</span></span>
-<span id="cb5-31"><a href="#cb5-31"></a><span class="co">#&gt; 1       102 150          64   118 103          61        80              25</span></span>
-<span id="cb5-32"><a href="#cb5-32"></a><span class="co">#&gt;   malignancy neonatal tech_dep transplant ccc_flag</span></span>
-<span id="cb5-33"><a href="#cb5-33"></a><span class="co">#&gt; 1        400       20      287         61      741</span></span>
-<span id="cb5-34"><a href="#cb5-34"></a></span>
-<span id="cb5-35"><a href="#cb5-35"></a><span class="co"># view percent of total population with each CCC</span></span>
-<span id="cb5-36"><a href="#cb5-36"></a>dplyr<span class="op">::</span><span class="kw">summarize_at</span>(ccc_result, <span class="kw">vars</span>(<span class="op">-</span>id), mean) <span class="op">%&gt;%</span><span class="st"> </span>print.data.frame</span>
-<span id="cb5-37"><a href="#cb5-37"></a><span class="co">#&gt;   neuromusc  cvd respiratory renal    gi hemato_immu metabolic congeni_genetic</span></span>
-<span id="cb5-38"><a href="#cb5-38"></a><span class="co">#&gt; 1     0.102 0.15       0.064 0.118 0.103       0.061      0.08           0.025</span></span>
-<span id="cb5-39"><a href="#cb5-39"></a><span class="co">#&gt;   malignancy neonatal tech_dep transplant ccc_flag</span></span>
-<span id="cb5-40"><a href="#cb5-40"></a><span class="co">#&gt; 1        0.4     0.02    0.287      0.061    0.741</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">library</span>(pccc)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>ccc_result <span class="ot">&lt;-</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>    <span class="fu">ccc</span>(pccc<span class="sc">::</span>pccc_icd9_dataset[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">21</span>)], <span class="co"># get id, dx, and pc columns</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>        <span class="at">id      =</span> id,</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>        <span class="at">dx_cols =</span> dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">&quot;dx&quot;</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>        <span class="at">pc_cols =</span> dplyr<span class="sc">::</span><span class="fu">starts_with</span>(<span class="st">&quot;pc&quot;</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>        <span class="at">icdv    =</span> <span class="dv">09</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co"># review results</span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="fu">head</span>(ccc_result)</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;   id neuromusc cvd respiratory renal gi hemato_immu metabolic congeni_genetic</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt; 1  1         0   0           0     0  1           0         0               0</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; 2  2         0   0           0     0  0           0         0               0</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt; 3  3         1   0           0     0  1           0         0               0</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; 4  4         0   0           0     0  0           0         0               0</span></span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a><span class="co">#&gt; 5  5         0   0           0     0  0           0         0               0</span></span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a><span class="co">#&gt; 6  6         0   1           0     0  0           0         0               0</span></span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a><span class="co">#&gt;   malignancy neonatal tech_dep transplant ccc_flag</span></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a><span class="co">#&gt; 1          0        0        0          0        1</span></span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a><span class="co">#&gt; 2          0        0        0          0        0</span></span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a><span class="co">#&gt; 3          0        0        1          0        1</span></span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a><span class="co">#&gt; 4          0        0        0          0        0</span></span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a><span class="co">#&gt; 5          0        0        0          0        0</span></span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a><span class="co">#&gt; 6          0        1        1          0        1</span></span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" tabindex="-1"></a><span class="co"># view number of patients with each CCC</span></span>
+<span id="cb5-29"><a href="#cb5-29" tabindex="-1"></a>sum_results <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">summarize_at</span>(ccc_result, <span class="fu">vars</span>(<span class="sc">-</span>id), sum) <span class="sc">%&gt;%</span> print.data.frame</span>
+<span id="cb5-30"><a href="#cb5-30" tabindex="-1"></a><span class="co">#&gt;   neuromusc cvd respiratory renal  gi hemato_immu metabolic congeni_genetic</span></span>
+<span id="cb5-31"><a href="#cb5-31" tabindex="-1"></a><span class="co">#&gt; 1       102 151          64   119 106          61        80              25</span></span>
+<span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="co">#&gt;   malignancy neonatal tech_dep transplant ccc_flag</span></span>
+<span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a><span class="co">#&gt; 1        400       20      287         61      741</span></span>
+<span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a></span>
+<span id="cb5-35"><a href="#cb5-35" tabindex="-1"></a><span class="co"># view percent of total population with each CCC</span></span>
+<span id="cb5-36"><a href="#cb5-36" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">summarize_at</span>(ccc_result, <span class="fu">vars</span>(<span class="sc">-</span>id), mean) <span class="sc">%&gt;%</span> print.data.frame</span>
+<span id="cb5-37"><a href="#cb5-37" tabindex="-1"></a><span class="co">#&gt;   neuromusc   cvd respiratory renal    gi hemato_immu metabolic congeni_genetic</span></span>
+<span id="cb5-38"><a href="#cb5-38" tabindex="-1"></a><span class="co">#&gt; 1     0.102 0.151       0.064 0.119 0.106       0.061      0.08           0.025</span></span>
+<span id="cb5-39"><a href="#cb5-39" tabindex="-1"></a><span class="co">#&gt;   malignancy neonatal tech_dep transplant ccc_flag</span></span>
+<span id="cb5-40"><a href="#cb5-40" tabindex="-1"></a><span class="co">#&gt; 1        0.4     0.02    0.287      0.061    0.741</span></span></code></pre></div>
 </div>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
 <ul>
-<li>Feudtner C, et al. Pediatric complex chronic conditions classification system version 2: updated for ICD-10 and complex medical technology dependence and transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199.</li>
-<li>Feudtner C, et al. Pediatric deaths attributable to complex chronic conditions: a population-based study of Washington State, 1980-1997. Pediatrics. 2000;106(1 Pt 2):205-209.</li>
+<li>Feudtner C, et al. Pediatric complex chronic conditions
+classification system version 2: updated for ICD-10 and complex medical
+technology dependence and transplantation, BMC Pediatrics, 2014, 14:199,
+DOI: 10.1186/1471-2431-14-199.</li>
+<li>Feudtner C, et al. Pediatric deaths attributable to complex chronic
+conditions: a population-based study of Washington State, 1980-1997.
+Pediatrics. 2000;106(1 Pt 2):205-209.</li>
 </ul>
 </div>
 

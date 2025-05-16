@@ -1,11 +1,14 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 
-## ---- message = FALSE---------------------------------------------------------
+## ----message = FALSE----------------------------------------------------------
 library(pccc)
 library(dplyr)
 
-## ---- eval = FALSE------------------------------------------------------------
+## ----eval = FALSE-------------------------------------------------------------
+#  system.file("icd", "ICD9_ICD10_comparability_file_documentation.pdf", package = "pccc")
+
+## ----eval = FALSE-------------------------------------------------------------
 #  # download and unzip file from ftp://ftp.cdc.gov/pub/health_statistics/nchs/datasets/comparability/icd9_icd10/ICD9_ICD10_comparability_public_use_ASCII.ZIP
 #  # columns of interest
 #  # start end     width description
